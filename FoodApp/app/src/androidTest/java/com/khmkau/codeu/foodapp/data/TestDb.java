@@ -108,8 +108,90 @@ public class TestDb extends AndroidTestCase {
 
         // if this fails, it means that your database doesn't contain all of the required location
         // entry columns
-        assertTrue("Error: The database doesn't contain all of the required location entry columns",
+        assertTrue("Error: The Food Info database doesn't contain all of the entry columns",
                 locationColumnHashSet.isEmpty());
+
+        c = db.rawQuery("PRAGMA table_info(" + FoodContract.CurrentEntry.TABLE_NAME + ")",
+                null);
+
+        assertTrue("Error: This means that we were unable to query the database for table information.",
+                c.moveToFirst());
+
+        // Build a HashSet of all of the column names we want to look for
+        final HashSet<String> currentColumnHashSet = new HashSet<String>();
+        currentColumnHashSet.add(FoodContract.CurrentEntry._ID);
+        currentColumnHashSet.add(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED);
+        currentColumnHashSet.add(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE);
+        currentColumnHashSet.add(FoodContract.CurrentEntry.COLUMN_FOOD_KEY);
+        currentColumnHashSet.add(FoodContract.CurrentEntry.COLUMN_QUANTITY);
+        currentColumnHashSet.add(FoodContract.CurrentEntry.COLUMN_VALUE);
+
+        columnNameIndex = c.getColumnIndex("name");
+        do {
+            String columnName = c.getString(columnNameIndex);
+            currentColumnHashSet.remove(columnName);
+        } while(c.moveToNext());
+
+        // if this fails, it means that your database doesn't contain all of the required location
+        // entry columns
+        assertTrue("Error: The Current database doesn't contain all of the entry columns",
+                currentColumnHashSet.isEmpty());
+
+        c = db.rawQuery("PRAGMA table_info(" + FoodContract.ThrownEntry.TABLE_NAME + ")",
+                null);
+
+        assertTrue("Error: This means that we were unable to query the database for table information.",
+                c.moveToFirst());
+
+        // Build a HashSet of all of the column names we want to look for
+        final HashSet<String> thrownColumnHashSet = new HashSet<String>();
+        thrownColumnHashSet.add(FoodContract.ThrownEntry._ID);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_DATE_PURCHASED);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_EXPIRATION_DATE);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_FOOD_KEY);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_QUANTITY);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_VALUE);
+        thrownColumnHashSet.add(FoodContract.ThrownEntry.COLUMN_DATE_THROWN);
+
+        columnNameIndex = c.getColumnIndex("name");
+        do {
+            String columnName = c.getString(columnNameIndex);
+            thrownColumnHashSet.remove(columnName);
+        } while(c.moveToNext());
+
+        // if this fails, it means that your database doesn't contain all of the required location
+        // entry columns
+        assertTrue("Error: The Current database doesn't contain all of the entry columns",
+                thrownColumnHashSet.isEmpty());
+
+        c = db.rawQuery("PRAGMA table_info(" + FoodContract.ConsumedEntry.TABLE_NAME + ")",
+                null);
+
+        assertTrue("Error: This means that we were unable to query the database for table information.",
+                c.moveToFirst());
+
+        // Build a HashSet of all of the column names we want to look for
+        final HashSet<String> consumedColumnHashSet = new HashSet<String>();
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry._ID);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_DATE_PURCHASED);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_EXPIRATION_DATE);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_FOOD_KEY);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_QUANTITY);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_VALUE);
+        consumedColumnHashSet.add(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED);
+
+        columnNameIndex = c.getColumnIndex("name");
+        do {
+            String columnName = c.getString(columnNameIndex);
+            consumedColumnHashSet.remove(columnName);
+        } while(c.moveToNext());
+
+        // if this fails, it means that your database doesn't contain all of the required location
+        // entry columns
+        assertTrue("Error: The Current database doesn't contain all of the entry columns",
+                consumedColumnHashSet.isEmpty());
+
+
         db.close();
     }
 

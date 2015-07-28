@@ -55,6 +55,7 @@ public class FoodContract {
         public static final String COLUMN_QUANTITY = "quantity";
         public static final String COLUMN_DATE_PURCHASED = "date_purchased";
         public static final String COLUMN_EXPIRATION_DATE = "expiration_date";
+        public static final String COLUMN_VALUE = "value";
 
         public static Uri buildLocationUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
@@ -80,6 +81,7 @@ public class FoodContract {
         public static final String COLUMN_DATE_CONSUMED = "date_consumed";
         public static final String COLUMN_EXPIRATION_DATE = "expiration_date";
         public static final String COLUMN_DATE_PURCHASED = "date_purchased";
+        public static final String COLUMN_VALUE = "value";
 
 
         public static Uri buildWeatherUri(long id) {
@@ -138,6 +140,7 @@ public class FoodContract {
         public static final String COLUMN_DATE_THROWN = "date_thrown";
         public static final String COLUMN_EXPIRATION_DATE = "expiration_date";
         public static final String COLUMN_DATE_PURCHASED = "date_purchased";
+        public static final String COLUMN_VALUE = "value";
 
 
         public static Uri buildWeatherUri(long id) {

@@ -12,7 +12,7 @@ import com.khmkau.codeu.foodapp.data.FoodContract.ConsumedEntry;
 public class FoodDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     static final String DATABASE_NAME = "food.db";
 
@@ -59,6 +59,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 CurrentEntry.COLUMN_EXPIRATION_DATE + " INTEGER, " +
                 CurrentEntry.COLUMN_FOOD_KEY + " INTEGER, " +
                 CurrentEntry.COLUMN_QUANTITY + " INTEGER, " +
+                CurrentEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + CurrentEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
                 InfoEntry.TABLE_NAME + " (" + InfoEntry._ID + "));";
 
@@ -69,6 +70,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 ThrownEntry.COLUMN_FOOD_KEY + " INTEGER, " +
                 ThrownEntry.COLUMN_QUANTITY + " INTEGER, " +
                 ThrownEntry.COLUMN_DATE_THROWN + " INTEGER, " +
+                ThrownEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + ThrownEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
                 InfoEntry.TABLE_NAME + " (" + InfoEntry._ID + "));";
 
@@ -79,6 +81,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 ConsumedEntry.COLUMN_FOOD_KEY + " INTEGER, " +
                 ConsumedEntry.COLUMN_QUANTITY + " INTEGER, " +
                 ConsumedEntry.COLUMN_DATE_CONSUMED + " INTEGER, " +
+                ConsumedEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + ConsumedEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
                 InfoEntry.TABLE_NAME + " (" + InfoEntry._ID + "));";
 
