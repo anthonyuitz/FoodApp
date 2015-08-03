@@ -1,9 +1,11 @@
 package com.khmkau.codeu.foodapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -36,4 +38,36 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //    public void foodView(View view)
+//    {
+//        Intent intent = new Intent(this, *activityname*.class);
+//        startActivity(intent);
+//    }
+//
+//    public void fridgeView(View view)
+//    {
+//        Intent intent = new Intent(this, *activityname*.class);
+//        startActivity(intent);
+//    }
+
+    public void consumptionView(View view)
+    {
+        Intent intent = new Intent(this, ServingsConsumptionActivity.class);
+        startActivity(intent);
+    }
+
+//    public void nutritionView(View view)
+//    {
+//        Intent intent = new Intent(this, NutritionActivity.class);
+//        startActivity(intent);
+//    }
+
+
+//    public void settingsView(View view)
+//    {
+//        Intent intent = new Intent(this, *activityname*.class);
+//        startActivity(intent);
+//    }
+
 }

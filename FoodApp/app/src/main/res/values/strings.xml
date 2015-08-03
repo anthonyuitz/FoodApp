@@ -2,4 +2,26 @@
     <string name="app_name">FoodApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="consumption_detail_per">Consumption Data - Percentages</string>
+    <string name="consumption_detail_ser">Consumption Data - Servings</string>
+    <string name="nutrition_detail_list">Nutrition Data - List</string>
+    <string name="nutrition_detail_per">Nutrition Data - Percentages</string>
+
+    <string name="description">Data to View: </string>
+    <string name="percentages_view">View Percentages</string>
+    <string name="servings_view">View Servings</string>
+
+    <string name="addFood">Add Food</string>
+    <string name="seeFridge">See Fridge</string>
+    <string name="consumptionStats">Consumption Stats</string>
+    <string name="nutritionStats">Nutrition Stats</string>
+    <string name="settings">Settings</string>
+
+    <string-array name="view_options">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+
 </resources>
