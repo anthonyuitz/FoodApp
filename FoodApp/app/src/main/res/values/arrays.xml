@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <!--the user visible array of options-->
+        <string-array name="pref_sort_options">
+            <item>@string/pref_sort_label_name</item>
+            <item>@string/pref_sort_label_price</item>
+            <item>@string/pref_sort_label_exp</item>
+            <item>@string/pref_sort_label_purch</item>
+        </string-array>
+
+        <!--the array of values-->
+        <string-array name="pref_sort_values">
+            <item>@string/pref_sort_name</item>
+            <item>@string/pref_sort_price</item>
+            <item>@string/pref_sort_exp</item>
+            <item>@string/pref_sort_purch</item>
+        </string-array>
+
+
+
+
+
+</resources>

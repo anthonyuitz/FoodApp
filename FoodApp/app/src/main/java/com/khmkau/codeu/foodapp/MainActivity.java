@@ -45,11 +45,11 @@ public class MainActivity extends ActionBarActivity {
 //        startActivity(intent);
 //    }
 //
-//    public void fridgeView(View view)
-//    {
-//        Intent intent = new Intent(this, *activityname*.class);
-//        startActivity(intent);
-//    }
+    public void fridgeView(View view)
+    {
+        Intent intent = new Intent(this, FridgeActivity.class);
+        startActivity(intent);
+    }
 
     public void consumptionView(View view)
     {
