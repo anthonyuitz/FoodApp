@@ -1,135 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:minHeight="?android:attr/listPreferredItemHeight"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:id="@+id/list_item_food_textview" />-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:minHeight="?android:attr/listPreferredItemHeight"-->
+<!--android:gravity="center_vertical"-->
+<!--android:id="@+id/list_item_food_textview" />-->
 
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="vertical"-->
+<!--android:paddingLeft="5dp">-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ListViewFood"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="5dp">
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:padding="12dp" >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ListViewFood"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/list_item_icon"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:orientation="horizontal"
-        android:paddingBottom="6dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="6dp"
-        android:paddingTop="12dp"
-        >
+        android:src="@drawable/ic_launcher"/>
 
-        <ImageView
-            android:id="@+id/list_item_icon"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/list_item_food_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+            android:fontFamily="sans-serif-condensed"
+            android:text="Apple"
+            android:textAppearance="?android:textAppearanceLarge"
+            />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingLeft="16dp">
-
-            <TextView
-                android:id="@+id/list_item_food_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Apple"
-                android:textSize="20sp"
-                />
-
-            <TextView
-                android:id="@+id/list_food_serving_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="3 servings"
-                android:textAppearance="?android:textAppearanceSmall"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/list_food_serving_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="vertical"
-            android:paddingLeft="16dp">
-
-            <TextView
-                android:id="@+id/list_item_exp_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Exp."
-                android:textSize="20sp"
-                />
-
-            <TextView
-                android:id="@+id/list_food_expdate_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingRight="17dp"
-                android:text="7/22"
-                android:textAppearance="?android:textAppearanceSmall"
-                />
-
-        </LinearLayout>
+            android:paddingLeft="5dp"
+            android:text="3 servings"
+            android:textAppearance="?android:textAppearanceSmall"
+            />
 
     </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/ListViewButtons"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/list_item_exp_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeight"
-            android:orientation="horizontal"
-            android:paddingBottom="12dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="6dp"
-            android:paddingTop="6dp"
-            >
+            android:fontFamily="sans-serif-condensed"
+            android:text="Exp."
+            android:textAppearance="?android:textAppearanceLarge"
+            />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+        <TextView
+            android:id="@+id/list_food_expdate_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="17dp"
+            android:text="7/22"
+            android:textAppearance="?android:textAppearanceSmall"
+            />
 
-                android:fontFamily="sans-serif-condensed"
-                android:text="Eat"
-                android:textColor="#FFFFFF"
-                />
+    </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+    <!--</LinearLayout>-->
 
-                android:fontFamily="sans-serif-condensed"
-                android:text="Trash"
-                android:textColor="#FFFFFF" />
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/ListViewButtons"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:minHeight="?android:attr/listPreferredItemHeight"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingBottom="12dp"-->
+    <!--android:paddingLeft="12dp"-->
+    <!--android:paddingRight="6dp"-->
+    <!--android:paddingTop="6dp"-->
+    <!--android:gravity="center_horizontal">-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
 
-                android:fontFamily="sans-serif-condensed"
-                android:text="Delete"
-                android:textColor="#FFFFFF" />
+    <!--android:fontFamily="sans-serif-condensed"-->
+    <!--android:text="Eat"-->
+    <!--android:textColor="#FFFFFF"-->
+    <!--/>-->
 
-        </LinearLayout>
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+
+    <!--android:fontFamily="sans-serif-condensed"-->
+    <!--android:text="Trash"-->
+    <!--android:textColor="#FFFFFF" />-->
+
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+
+    <!--android:fontFamily="sans-serif-condensed"-->
+    <!--android:text="Delete"-->
+    <!--android:textColor="#FFFFFF" />-->
+
+    <!--</LinearLayout>-->
 
 </LinearLayout>
