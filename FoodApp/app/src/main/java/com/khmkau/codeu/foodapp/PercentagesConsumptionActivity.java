@@ -29,6 +29,8 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_percentage_consumption);
         HorizontalBarChart chart = (HorizontalBarChart) findViewById(R.id.hchart);
 
+        recommendedValues = computeRecommendedValues();
+
         BarData data = new BarData(getXAxisValues(), getDataSet());
         chart.setData(data);
         chart.setDescription("");
@@ -54,20 +56,86 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         Log.i("Consumption Activity", "Switching activities");
     }
 
+    private float[] recommendedValues;
+
+    public float[] computeRecommendedValues() {
+
+        // TODO: get values from the settings
+        int age = 60;
+        boolean male = true; // false if female
+        float weight = 150;
+
+        float waterRec = (0.5f * weight)/8f;
+
+        if(age <= 2)
+            return new float[]{2.5f, .5f, 4f, 1f, 1.25f, waterRec};
+        else if(age <= 3)
+            return new float[]{2.5f, 1f, 4f, 1f, 1.5f, waterRec};
+
+            // male
+        else if(male == true) {
+            if(age <=8)
+                return new float[]{4.5f, 1.5f, 4f, 1.5f, 2f, waterRec};
+            else if(age <= 11)
+                return new float[]{5f, 2f, 5f, 2.5f, 2.5f, waterRec};
+            else if(age <= 13)
+                return new float[]{5.5f, 2f, 6f, 2.5f, 3.5f, waterRec};
+            else if(age <= 18)
+                return new float[]{5.5f, 2f, 7f, 2.5f, 3.5f, waterRec};
+            else if(age <= 50)
+                return new float[]{6f, 2f, 6f, 3f, 2.5f, waterRec};
+            else if(age <= 70)
+                return new float[]{5.5f, 2f, 6f, 2.5f, 2.5f, waterRec};
+            else
+                return new float[]{5f, 2f, 4.5f, 2.5f, 3.5f, waterRec};
+        }
+
+        // female
+        else {
+            if(age <= 8)
+                return new float[]{4.5f, 1.5f, 4f, 1.5f, 1.5f, waterRec};
+            else if(age <= 11)
+                return new float[]{5f, 2f, 4f, 2.5f, 2.5f, waterRec};
+            else if(age <= 13)
+                return new float[]{5f, 2f, 5f, 2.5f, 3.5f, waterRec};
+            else if(age <= 18)
+                return new float[]{5f, 2f, 7f, 2.5f, 3.5f, waterRec};
+            else if(age <= 50)
+                return new float[]{5f, 2f, 6f, 2.5f, 2.5f, waterRec};
+            else if(age <= 70)
+                return new float[]{5f, 2f, 4f, 2f, 4f, waterRec};
+            else
+                return new float[]{5f, 2f, 3f, 2f, 4f, waterRec};
+        }
+
+    }
+
+    // TODO: implement this using calls to the database
+//    public float[] computeRecommendedValues() {
+//
+//    }
+
+
+
     private ArrayList<BarDataSet> getDataSet() {
         ArrayList<BarDataSet> dataSets = null;
 
         // Consumed values
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
-        // Loop through food groups and compute consumption (convert to a percentage)
+        // TODO: compute percentages -> loop through the percentages to initialize valueSet1
+
+        float[] consumedValues = new float [6];
+        consumedValues = computeRecommendedValues();
 
 //        for(int i = 0; i < 6; i++){
-//            // compute value
-//            float value = 0;
-//            valueSet1.add(new BarEntry(value, i));
+//            // compute percentage
+//            float percentage = (float)(consumedValues[i]/recommendedValues[i]);
+//            valueSet1.add(new BarEntry(percentage, i));
 //        }
 
+
+        // stub implementation
         BarEntry v1e1 = new BarEntry(110.000f, 0); // Jan
         valueSet1.add(v1e1);
         BarEntry v1e2 = new BarEntry(40.000f, 1); // Feb

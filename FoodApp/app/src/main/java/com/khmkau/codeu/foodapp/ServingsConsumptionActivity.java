@@ -30,6 +30,8 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         spinner = (Spinner)findViewById(R.id.spinner);
 
+        recommendedValues = computeRecommendedValues();
+
         selection = "Day"; // default value
         data = new BarData(getXAxisValues(), getDataSet());
 
@@ -113,25 +115,6 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         BarEntry v1e6 = new BarEntry(4.000f, 5); // Water
         valueSet1.add(v1e6);
 
-        // compute recommended values
-
-
-        // Recommended values
-//        ArrayList<BarEntry> valueSet2 = new ArrayList<>();
-//        BarEntry v2e1 = new BarEntry(7.000f, 0); // Fruits
-//        valueSet2.add(v2e1);
-//        BarEntry v2e2 = new BarEntry(2.000f, 1); // Vegetables
-//        valueSet2.add(v2e2);
-//        BarEntry v2e3 = new BarEntry(10.000f, 2); // Grains
-//        valueSet2.add(v2e3);
-//        BarEntry v2e4 = new BarEntry(10.000f, 3); // Protein
-//        valueSet2.add(v2e4);
-//        BarEntry v2e5 = new BarEntry(8.000f, 4); // Dairy
-//        valueSet2.add(v2e5);
-//        BarEntry v2e6 = new BarEntry(3.000f, 5); // Water
-//        valueSet2.add(v2e6);
-
-        float[] recommendedValues = computeRecommendedValues();
 
         // default: day; if the setting is week, multiply recommendedValues[i]*7, etc.
         ArrayList<BarEntry> valueSet2 = new ArrayList<>();
@@ -163,8 +146,13 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         return dataSets;
     }
 
+    private float[] recommendedValues;
+
+
     // returns an array of the recommended amt of servings (vegetables, fruit, grain, protein, dairy, water)
-    private float[] computeRecommendedValues() {
+    public float[] computeRecommendedValues() {
+
+        // TODO: get values from the settings
 
         int age = 60;
         boolean male = true; // false if female

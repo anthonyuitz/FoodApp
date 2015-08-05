@@ -43,8 +43,15 @@
             <!--</intent-filter>-->
         </activity>
         <activity
-            android:name=".NutritionalDetailActivity"
-            android:label="@string/title_activity_nutritional_detail">
+            android:name=".PercentagesNutritionActivity"
+            android:label="@string/nutrition_detail_per">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ListNutritionActivity"
+            android:label="@string/nutrition_detail_list">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />

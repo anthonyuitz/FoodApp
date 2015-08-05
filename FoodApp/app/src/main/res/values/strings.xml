@@ -11,6 +11,7 @@
     <string name="description">Data to View: </string>
     <string name="percentages_view">View Percentages</string>
     <string name="servings_view">View Servings</string>
+    <string name="list_view">View List</string>
 
     <string name="addFood">Add Food</string>
     <string name="seeFridge">See Fridge</string>
