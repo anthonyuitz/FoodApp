@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -180,10 +179,12 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         else if(selection.equals("Month"))
             multiplier = 30;
 
-        for(int i = 0; i < 6; i++){
+        int index = (consumedValues.length - 1);
+        for(int i = 0; i < consumedValues.length; i++){
             // compute percentage
             float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier));
-            valueSet1.add(new BarEntry(percentage, i));
+            valueSet1.add(new BarEntry(percentage, index));
+            index--;
         }
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended Values)");
