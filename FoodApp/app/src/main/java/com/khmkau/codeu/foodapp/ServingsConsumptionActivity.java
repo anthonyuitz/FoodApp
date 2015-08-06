@@ -106,21 +106,6 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         ArrayList<BarDataSet> dataSets;
 
-        // Consumed values
-//        ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-//        BarEntry v1e1 = new BarEntry(5.000f, 0); // Fruits
-//        valueSet1.add(v1e1);
-//        BarEntry v1e2 = new BarEntry(5.000f, 1); // Vegetables
-//        valueSet1.add(v1e2);
-//        BarEntry v1e3 = new BarEntry(12.000f, 2); // Grains
-//        valueSet1.add(v1e3);
-//        BarEntry v1e4 = new BarEntry(5.000f, 3); // Protein
-//        valueSet1.add(v1e4);
-//        BarEntry v1e5 = new BarEntry(9.000f, 4); // Dairy
-//        valueSet1.add(v1e5);
-//        BarEntry v1e6 = new BarEntry(4.000f, 5); // Water
-//        valueSet1.add(v1e6);
-
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
         float[] consumedValues = computeConsumedValues();
