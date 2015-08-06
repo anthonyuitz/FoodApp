@@ -145,6 +145,9 @@ public class FoodFragment extends Fragment {
                     case 0: // eat
                         // TODO: implement dialog fragment and update database accordingly
                         Toast.makeText(getActivity(), "OPEN UP OPTION DIALOG for eat", Toast.LENGTH_SHORT).show();
+
+
+
                         break;
                     case 1: // trash food
                         // TODO update database to remove item amount
