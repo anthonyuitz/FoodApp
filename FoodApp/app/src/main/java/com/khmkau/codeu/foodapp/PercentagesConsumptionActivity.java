@@ -10,7 +10,10 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -27,17 +30,22 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_percentage_consumption);
-        HorizontalBarChart chart = (HorizontalBarChart) findViewById(R.id.hchart);
+
+        chart = (HorizontalBarChart) findViewById(R.id.hchart);
+
+        spinner = (Spinner)findViewById(R.id.spinner);
 
         recommendedValues = computeRecommendedValues();
 
-        BarData data = new BarData(getXAxisValues(), getDataSet());
+        selection = "Day"; // default value
+
+        data = new BarData(getXAxisValues(), getDataSet());
         chart.setData(data);
         chart.setDescription("");
         // chart.setVisibleXRange(3);
         // chart.fitScreen();
 
-        XAxis xAxis = chart.getXAxis();
+        xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
         LimitLine line = new LimitLine(100.000f);
@@ -47,7 +55,45 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
 
         chart.animateXY(2000, 2000);
         chart.invalidate();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                selection = String.valueOf(spinner.getSelectedItem());
+                // Log.i("itemSelected: ", "Value of Selection is: " + selection);
+
+                data = new BarData(getXAxisValues(), getDataSet());
+
+                data.setGroupSpace(30f);
+
+                // BarChart chart = (BarChart) findViewById(R.id.chart);
+
+                chart.setData(data);
+                chart.setNoDataText("");
+                chart.setDescription("");
+
+                xAxis = chart.getXAxis();
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                chart.animateXY(2000, 2000);
+                chart.invalidate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                selection = "Day";
+                Log.i("nothingSelected: ", "Value of Selection is: " + selection);
+            }
+
+        });
+        // selection = String.valueOf(spinner.getSelectedItem());
     }
+
+    private String selection;
+    private Spinner spinner;
+    private HorizontalBarChart chart;
+    private BarData data;
+    private XAxis xAxis;
 
     public void changeView(View view)
     {
@@ -111,9 +157,10 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     }
 
     // TODO: implement this using calls to the database
-//    public float[] computeRecommendedValues() {
-//
-//    }
+    // stub implementation
+    public float[] computeConsumedValues() {
+        return new float[]{4.3f, 2.8f, 4f, 1f, 3.6f, 8f};
+    }
 
 
 
@@ -125,29 +172,19 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
 
         // TODO: compute percentages -> loop through the percentages to initialize valueSet1
 
-        float[] consumedValues = new float [6];
-        consumedValues = computeRecommendedValues();
+        float[] consumedValues = computeConsumedValues();
 
-//        for(int i = 0; i < 6; i++){
-//            // compute percentage
-//            float percentage = (float)(consumedValues[i]/recommendedValues[i]);
-//            valueSet1.add(new BarEntry(percentage, i));
-//        }
+        int multiplier = 1;
+        if (selection.equals("Week"))
+            multiplier = 7;
+        else if(selection.equals("Month"))
+            multiplier = 30;
 
-
-        // stub implementation
-        BarEntry v1e1 = new BarEntry(110.000f, 0); // Jan
-        valueSet1.add(v1e1);
-        BarEntry v1e2 = new BarEntry(40.000f, 1); // Feb
-        valueSet1.add(v1e2);
-        BarEntry v1e3 = new BarEntry(60.000f, 2); // Mar
-        valueSet1.add(v1e3);
-        BarEntry v1e4 = new BarEntry(30.000f, 3); // Apr
-        valueSet1.add(v1e4);
-        BarEntry v1e5 = new BarEntry(90.000f, 4); // May
-        valueSet1.add(v1e5);
-        BarEntry v1e6 = new BarEntry(100.000f, 5); // Jun
-        valueSet1.add(v1e6);
+        for(int i = 0; i < 6; i++){
+            // compute percentage
+            float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier));
+            valueSet1.add(new BarEntry(percentage, i));
+        }
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended Values)");
         // barDataSet1.setColor(Color.rgb(70, 137, 253));
