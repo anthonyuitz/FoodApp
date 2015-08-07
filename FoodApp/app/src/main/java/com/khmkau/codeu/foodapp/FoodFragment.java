@@ -7,6 +7,7 @@ package com.khmkau.codeu.foodapp;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -144,9 +145,10 @@ public class FoodFragment extends Fragment {
                 switch (index) {
                     case 0: // eat
                         // TODO: implement dialog fragment and update database accordingly
-                        Toast.makeText(getActivity(), "OPEN UP OPTION DIALOG for eat", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getActivity(), "OPEN UP OPTION DIALOG for eat", Toast.LENGTH_SHORT).show();
 
-
+                        DialogFragment newFragment = new EatDialogFragment();
+                        newFragment.show(getFragmentManager(), "eat");
 
                         break;
                     case 1: // trash food
