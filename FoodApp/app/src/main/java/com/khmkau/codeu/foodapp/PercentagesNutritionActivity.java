@@ -35,8 +35,12 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         selection = "Day"; // default value
 
         data = new BarData(getXAxisValues(), getDataSet());
+
+        data.setGroupSpace(50f);
         chart.setData(data);
-        chart.setDescription("");
+        chart.setDescription("Percentage");
+        chart.setDescriptionTextSize(16f);
+        chart.setDescriptionColor(Color.DKGRAY);
 
         xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -64,7 +68,9 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
 
                 chart.setData(data);
                 chart.setNoDataText("");
-                chart.setDescription("");
+                chart.setDescription("Percentage");
+                chart.setDescriptionTextSize(16f);
+                chart.setDescriptionColor(Color.DKGRAY);
 
                 xAxis = chart.getXAxis();
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -136,9 +142,9 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         }
 
 
-        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended Values)");
-        // barDataSet1.setColor(Color.rgb(70, 137, 253));
-        int[] colorArray = {Color.rgb(70, 137, 253), Color.rgb(86, 250, 152)};
+        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended* Values)");
+        // barDataSet1.setColor(Color.rgb(70, 137, 253)); // Color.rgb(80, 255, 150),  (green)
+        int[] colorArray = {Color.rgb(80, 255, 150), Color.rgb(70, 137, 253)}; // Color.rgb(123,104,238)} (purple)
 
 
         barDataSet1.setColors(colorArray);

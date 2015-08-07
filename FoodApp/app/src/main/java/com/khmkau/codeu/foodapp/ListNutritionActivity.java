@@ -121,7 +121,7 @@ public class ListNutritionActivity extends ActionBarActivity {
         row.addView(value);
 
         recValue = new TextView(this);
-        recValue.setText("Recommended");
+        recValue.setText("Recommended*");
         recValue.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT));
         recValue.setGravity(Gravity.CENTER);
         recValue.setPadding(10, 10, 10, 10);
