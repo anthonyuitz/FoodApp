@@ -1,17 +1,14 @@
 package com.khmkau.codeu.foodapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -23,13 +20,12 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
 
 // horizontal bar graph
-public class PercentagesConsumptionActivity extends ActionBarActivity {
+public class PercentagesNutritionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_percentage_consumption);
-
+        setContentView(R.layout.activity_percentage_nutrition);
         chart = (HorizontalBarChart) findViewById(R.id.hchart);
 
         spinner = (Spinner)findViewById(R.id.spinner);
@@ -41,8 +37,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         data = new BarData(getXAxisValues(), getDataSet());
         chart.setData(data);
         chart.setDescription("");
-        // chart.setVisibleXRange(3);
-        // chart.fitScreen();
 
         xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -85,7 +79,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
             }
 
         });
-        // selection = String.valueOf(spinner.getSelectedItem());
     }
 
     private String selection;
@@ -94,84 +87,38 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     private BarData data;
     private XAxis xAxis;
 
-    public void changeView(View view)
-    {
-        Intent intent = new Intent(this, ServingsConsumptionActivity.class);
+    public void changeView(View view) {
+        Intent intent = new Intent(this, ListNutritionActivity.class);
         startActivity(intent);
         Log.i("Consumption Activity", "Switching activities");
     }
 
     private float[] recommendedValues;
 
+    // stub implementation
+    public float[] computeConsumedValues()
+    {
+        // TODO: compute consumed values using calls to the database
+        return new float[] {1800, 68, 25, 310, 2600, 280, 25, 55, 1025, 20, 5675, 48};
+    }
+
     public float[] computeRecommendedValues() {
 
-        // TODO: get values from the settings
-        int age = 60;
-        boolean male = true; // false if female
-        float weight = 150;
-
-        float waterRec = (0.5f * weight)/8f;
-
-        if(age <= 2)
-            return new float[]{2.5f, .5f, 4f, 1f, 1.25f, waterRec};
-        else if(age <= 3)
-            return new float[]{2.5f, 1f, 4f, 1f, 1.5f, waterRec};
-
-            // male
-        else if(male == true) {
-            if(age <=8)
-                return new float[]{4.5f, 1.5f, 4f, 1.5f, 2f, waterRec};
-            else if(age <= 11)
-                return new float[]{5f, 2f, 5f, 2.5f, 2.5f, waterRec};
-            else if(age <= 13)
-                return new float[]{5.5f, 2f, 6f, 2.5f, 3.5f, waterRec};
-            else if(age <= 18)
-                return new float[]{5.5f, 2f, 7f, 2.5f, 3.5f, waterRec};
-            else if(age <= 50)
-                return new float[]{6f, 2f, 6f, 3f, 2.5f, waterRec};
-            else if(age <= 70)
-                return new float[]{5.5f, 2f, 6f, 2.5f, 2.5f, waterRec};
-            else
-                return new float[]{5f, 2f, 4.5f, 2.5f, 3.5f, waterRec};
-        }
-
-        // female
-        else {
-            if(age <= 8)
-                return new float[]{4.5f, 1.5f, 4f, 1.5f, 1.5f, waterRec};
-            else if(age <= 11)
-                return new float[]{5f, 2f, 4f, 2.5f, 2.5f, waterRec};
-            else if(age <= 13)
-                return new float[]{5f, 2f, 5f, 2.5f, 3.5f, waterRec};
-            else if(age <= 18)
-                return new float[]{5f, 2f, 7f, 2.5f, 3.5f, waterRec};
-            else if(age <= 50)
-                return new float[]{5f, 2f, 6f, 2.5f, 2.5f, waterRec};
-            else if(age <= 70)
-                return new float[]{5f, 2f, 4f, 2f, 4f, waterRec};
-            else
-                return new float[]{5f, 2f, 3f, 2f, 4f, waterRec};
-        }
+        return new float[] {2000, 65, 20, 300, 2400, 300, 25, 50, 1000, 18, 5000, 60};
+        // String [] units = {"Cal", "g", "g", "mg", "mg", "g", "g", "g", "mg", "mg", "IU", "mg"};
 
     }
-
-    // TODO: implement this using calls to the database
-    // stub implementation
-    public float[] computeConsumedValues() {
-        return new float[]{4.3f, 2.8f, 4f, 1f, 3.6f, 8f};
-    }
-
-
 
     private ArrayList<BarDataSet> getDataSet() {
         ArrayList<BarDataSet> dataSets = null;
 
-        // Consumed values
+        // Consumed value
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
         // TODO: compute percentages -> loop through the percentages to initialize valueSet1
 
         float[] consumedValues = computeConsumedValues();
+        float[] recommendedValues = computeRecommendedValues();
 
         int multiplier = 1;
         if (selection.equals("Week"))
@@ -179,13 +126,15 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         else if(selection.equals("Month"))
             multiplier = 30;
 
+        // need to iterate backwards because of the backwards order?
         int index = (consumedValues.length - 1);
         for(int i = 0; i < consumedValues.length; i++){
             // compute percentage
-            float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier));
+            float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier)*100);
             valueSet1.add(new BarEntry(percentage, index));
             index--;
         }
+
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended Values)");
         // barDataSet1.setColor(Color.rgb(70, 137, 253));
@@ -205,46 +154,19 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     private ArrayList<String> getXAxisValues() {
         ArrayList<String> xAxis = new ArrayList<>();
 
-        Display display = getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-        float density = getResources().getDisplayMetrics().density;
-        float dpwidth = outMetrics.widthPixels/density;
+        xAxis.add("Vitamin C");
+        xAxis.add("Vitamin A");
+        xAxis.add("Iron");
+        xAxis.add("Calcium");
+        xAxis.add("Protein");
+        xAxis.add("Dietary Fiber");
+        xAxis.add("Total Carbs");
+        xAxis.add("Sodium");
+        xAxis.add("Cholesterol");
+        xAxis.add("Saturated Fat");
+        xAxis.add("Total Fat");
+        xAxis.add("Calories");
 
-        Log.i("ConsumptionActivity", "density: " + dpwidth);
-
-        float scalingFactor = getResources().getDisplayMetrics().density;
-        Log.i("ConsumptionActivity", "Scaling factor: " + scalingFactor);
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
-        int screenWidth = displayMetrics.widthPixels;
-        // int screenHeight = displayMetrics.heightPixels;
-
-        Log.i("ConsumptionActivity", "screenWidth: " + screenWidth);
-
-
-
-        // somehow differentiate between screen widths...
-            // Don't use abbreviations if it is Nexus 7/10?
-        if(screenWidth < 0) {
-            xAxis.add("h2o");
-            xAxis.add("Dry");
-            xAxis.add("Pr");
-            xAxis.add("Gr");
-            xAxis.add("Fr");
-            xAxis.add("Veg");
-        }
-        else
-        {
-            xAxis.add("Water");
-            xAxis.add("Dairy");
-            xAxis.add("Protein");
-            xAxis.add("Grains");
-            xAxis.add("Fruits");
-            xAxis.add("Vegetables");
-        }
         return xAxis;
     }
 }
