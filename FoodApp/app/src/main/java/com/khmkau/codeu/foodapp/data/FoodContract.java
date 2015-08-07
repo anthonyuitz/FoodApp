@@ -57,8 +57,37 @@ public class FoodContract {
         public static final String COLUMN_EXPIRATION_DATE = "expiration_date";
         public static final String COLUMN_VALUE = "value";
 
-        public static Uri buildLocationUri(long id) {
+        public static Uri buildCurrentUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildCurrentExpiration(long expiration) {
+            long normalizedDate = normalizeDate(expiration);
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(normalizedDate)).build();
+        }
+
+        public static Uri buildCurrentFoodGroup(String foodgroup) {
+            return CONTENT_URI.buildUpon().appendPath(foodgroup).build();
+        }
+
+        public static Uri buildCurrentCalories(int min_calories, int max_calories) {
+            return CONTENT_URI.buildUpon().appendPath(Integer.toString(min_calories))
+                    .appendPath(Integer.toString(max_calories)).build();
+        }
+
+        public static long getExpirationFromUri(Uri uri) {
+            return Long.parseLong(uri.getPathSegments().get(1));
+        }
+
+        public static String getFoodGroupFromUri(Uri uri) {
+            return uri.getPathSegments().get(1);
+        }
+
+        public static String[] getCaloriesFromUri(Uri uri) {
+            String[] calories = new String[2];
+            calories[0] = uri.getPathSegments().get(1);
+            calories[1] = uri.getPathSegments().get(2);
+            return calories;
         }
     }
 
@@ -84,42 +113,41 @@ public class FoodContract {
         public static final String COLUMN_VALUE = "value";
 
 
-        public static Uri buildWeatherUri(long id) {
+        public static Uri buildConsumedUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        /*
-        public static Uri buildWeatherLocation(String locationSetting) {
-            return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
+        public static Uri buildConsumedDate(long date) {
+            long normalizedDate = normalizeDate(date);
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(normalizedDate)).build();
         }
 
-        public static Uri buildWeatherLocationWithStartDate(
-                String locationSetting, long startDate) {
-            long normalizedDate = normalizeDate(startDate);
-            return CONTENT_URI.buildUpon().appendPath(locationSetting)
-                    .appendQueryParameter(COLUMN_DATE, Long.toString(normalizedDate)).build();
+        public static Uri buildConsumedDateRange(long min_date, long max_date) {
+            long normalizedMinDate = normalizeDate(min_date);
+            long normalizedMaxDate = normalizeDate(max_date);
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(normalizedMinDate))
+                    .appendPath(Long.toString(normalizedMaxDate)).build();
         }
 
-        public static Uri buildWeatherLocationWithDate(String locationSetting, long date) {
-            return CONTENT_URI.buildUpon().appendPath(locationSetting)
-                    .appendPath(Long.toString(normalizeDate(date))).build();
-        }
-
-        public static String getLocationSettingFromUri(Uri uri) {
-            return uri.getPathSegments().get(1);
+        public static Uri buildConsumedFoodGroup(String foodgroup) {
+            return CONTENT_URI.buildUpon().appendPath(foodgroup).build();
         }
 
         public static long getDateFromUri(Uri uri) {
-            return Long.parseLong(uri.getPathSegments().get(2));
+            return Long.parseLong(uri.getPathSegments().get(1));
         }
 
-        public static long getStartDateFromUri(Uri uri) {
-            String dateString = uri.getQueryParameter(COLUMN_DATE);
-            if (null != dateString && dateString.length() > 0)
-                return Long.parseLong(dateString);
-            else
-                return 0;
-        } */
+        public static long[] getDateRangeFromUri(Uri uri) {
+            long[] daterange = new long[2];
+            daterange[0] = Long.parseLong(uri.getPathSegments().get(1));
+            daterange[1] = Long.parseLong(uri.getPathSegments().get(2));
+            return daterange;
+        }
+
+        public static String getFoodGroupFromUri(Uri uri) {
+            return uri.getPathSegments().get(3);
+        }
+
     }
 
     public static final class ThrownEntry implements BaseColumns {
@@ -143,8 +171,31 @@ public class FoodContract {
         public static final String COLUMN_VALUE = "value";
 
 
-        public static Uri buildWeatherUri(long id) {
+        public static Uri buildThrownUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildThrownDate(long date) {
+            long normalizedDate = normalizeDate(date);
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(normalizedDate)).build();
+        }
+
+        public static Uri buildThrownDateRange(long min_date, long max_date) {
+            long normalizedMinDate = normalizeDate(min_date);
+            long normalizedMaxDate = normalizeDate(max_date);
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(normalizedMinDate))
+                    .appendPath(Long.toString(normalizedMaxDate)).build();
+        }
+
+        public static long getDateFromUri(Uri uri) {
+            return Long.parseLong(uri.getPathSegments().get(1));
+        }
+
+        public static long[] getDateRangeFromUri(Uri uri) {
+            long[] daterange = new long[2];
+            daterange[0] = Long.parseLong(uri.getPathSegments().get(1));
+            daterange[1] = Long.parseLong(uri.getPathSegments().get(2));
+            return daterange;
         }
 
     }
@@ -190,7 +241,7 @@ public class FoodContract {
         public static final String COLUMN_ZINC = "zinc";
         public static final String COLUMN_IODINE = "iodine";
 
-        public static Uri buildWeatherUri(long id) {
+        public static Uri buildInfoUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }

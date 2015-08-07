@@ -63,6 +63,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
+        <provider
+            android:authorities="com.khmkau.codeu.foodapp.app"
+            android:name=".data.FoodProvider" />
     </application>
 
 
