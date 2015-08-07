@@ -39,8 +39,9 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         chart.setData(data);
         chart.setNoDataText("");
-        chart.setDescription("");
-
+        chart.setDescription("Food Group");
+        chart.setDescriptionTextSize(16f);
+        chart.setDescriptionColor(Color.DKGRAY);
 
         xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -62,7 +63,9 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
                 chart.setData(data);
                 chart.setNoDataText("");
-                chart.setDescription("");
+                chart.setDescription("Food Group");
+                chart.setDescriptionTextSize(16f);
+                chart.setDescriptionColor(Color.DKGRAY);
 
                 xAxis = chart.getXAxis();
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -79,7 +82,6 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         });
         // selection = String.valueOf(spinner.getSelectedItem());
         Log.i("onCreate: ", "Value of Selection is: " + selection);
-
 
     }
 
@@ -132,9 +134,9 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         }
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumed");
-        barDataSet1.setColor(Color.rgb(70, 137, 253));
-        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Recommended");
-        barDataSet2.setColor(Color.rgb(86, 250, 152));
+        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Recommended*");
+        barDataSet1.setColor(Color.rgb(255,87,71)); //
+        barDataSet2.setColor(Color.rgb(255, 179, 71)); // (70, 137, 253));
 
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
