@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void nutritionView(View view)
     {
-        Intent intent = new Intent(this, PercentagesNutritionActivity.class);
+        Intent intent = new Intent(this, PercentagesConsumptionActivity.class);
         startActivity(intent);
     }
 
