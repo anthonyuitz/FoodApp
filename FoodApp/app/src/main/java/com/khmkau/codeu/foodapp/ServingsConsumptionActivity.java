@@ -1,8 +1,10 @@
 package com.khmkau.codeu.foodapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -27,6 +29,13 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_servings_consumption);
 
         chart = (BarChart) findViewById(R.id.chart);
+
+        // Get Settings
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        age = Integer.parseInt(SP.getString("age", "18"));
+        // boolean gender = SP.getBoolean("gender", true);
+        weight = Integer.parseInt(SP.getString("weight","120"));
+        Log.i("Settings", age + " " + " " + weight);
 
         spinner = (Spinner)findViewById(R.id.spinner);
 
@@ -53,13 +62,8 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 selection = String.valueOf(spinner.getSelectedItem());
-                // Log.i("itemSelected: ", "Value of Selection is: " + selection);
-
                 data = new BarData(getXAxisValues(), getDataSet());
-
                 data.setGroupSpace(30f);
-
-                // BarChart chart = (BarChart) findViewById(R.id.chart);
 
                 chart.setData(data);
                 chart.setNoDataText("");
@@ -90,6 +94,9 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
     private BarChart chart;
     private BarData data;
     private XAxis xAxis;
+
+    private int age;
+    private int weight;
 
     public void changeView(View view)
     {
@@ -135,8 +142,8 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumed");
         BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Recommended*");
-        barDataSet1.setColor(Color.rgb(255,87,71)); //
-        barDataSet2.setColor(Color.rgb(255, 179, 71)); // (70, 137, 253));
+        barDataSet1.setColor(Color.rgb(255,87,71));
+        barDataSet2.setColor(Color.rgb(255, 179, 71));
 
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
@@ -152,9 +159,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         // TODO: get values from the settings
 
-        int age = 60;
         boolean male = true; // false if female
-        float weight = 150;
 
         float waterRec = (0.5f * weight)/8f;
 
@@ -211,9 +216,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         float density = getResources().getDisplayMetrics().density;
         float dpwidth = outMetrics.widthPixels/density;
 
-        // somehow differentiate between screen widths...
         if(dpwidth < 500) {
-            // Don't use abbreviations if it is Nexus 7/10?
             xAxis.add("Veg");
             xAxis.add("Fr");
             xAxis.add("Gr");

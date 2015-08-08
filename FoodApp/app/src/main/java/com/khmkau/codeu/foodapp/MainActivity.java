@@ -17,13 +17,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-
-        String age = SP.getString("age", "18");
-        // boolean gender = SP.getBoolean("gender", true);
-        String weight = SP.getString("weight","120");
-        Log.i("Settings", age + " " + " " + weight);
     }
 
 
@@ -41,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, PreferencesActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -72,10 +65,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public void settingsView(View view)
-    {
-        Intent intent = new Intent(this, PreferencesActivity.class);
-        startActivity(intent);
-    }
+//    public void settingsView(View view)
+//    {
+//        Intent intent = new Intent(this, PreferencesActivity.class);
+//        startActivity(intent);
+//    }
 
 }
