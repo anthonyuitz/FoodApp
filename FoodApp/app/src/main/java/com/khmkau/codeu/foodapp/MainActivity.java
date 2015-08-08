@@ -20,10 +20,10 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        String strUserName = SP.getString("username", "NA");
-        boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
-        String downloadType = SP.getString("downloadType","1");
-        Log.i("Settings", strUserName + " " + bAppUpdates + " " + downloadType);
+        String age = SP.getString("age", "18");
+        // boolean gender = SP.getBoolean("gender", true);
+        String weight = SP.getString("weight","120");
+        Log.i("Settings", age + " " + " " + weight);
     }
 
 
