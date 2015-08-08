@@ -1,8 +1,11 @@
 package com.khmkau.codeu.foodapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        String strUserName = SP.getString("username", "NA");
+        boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
+        String downloadType = SP.getString("downloadType","1");
+        Log.i("Settings", strUserName + " " + bAppUpdates + " " + downloadType);
     }
 
 
@@ -62,10 +72,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-//    public void settingsView(View view)
-//    {
-//        Intent intent = new Intent(this, *activityname*.class);
-//        startActivity(intent);
-//    }
+    public void settingsView(View view)
+    {
+        Intent intent = new Intent(this, PreferencesActivity.class);
+        startActivity(intent);
+    }
 
 }
