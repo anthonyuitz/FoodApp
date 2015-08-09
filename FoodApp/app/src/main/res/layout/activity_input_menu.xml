@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/manual_input"
+        android:id="@+id/button2"
+        android:layout_gravity="center"
+        android:onClick="manualView"
+        android:background="#ff55b1ff"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffffffff" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/existing_input"
+        android:id="@+id/button3"
+        android:layout_gravity="center"
+        android:onClick="existingView"
+        android:background="#ff55b1ff"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffffffff" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/barcode_input"
+        android:id="@+id/button4"
+        android:layout_gravity="center"
+        android:onClick="featureNotImplemented"
+        android:background="#bb9e9e9e"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffffffff" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/receipt_input"
+        android:id="@+id/button5"
+        android:layout_gravity="center"
+        android:onClick="featureNotImplemented"
+        android:background="#bb9e9e9e"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffffffff" />
+    <!--<Button-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/settings"-->
+    <!--android:id="@+id/button6"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:onClick="settingsView"-->
+    <!--android:background="#ff55b1ff"-->
+    <!--android:textColor="#ffffffff" />-->
+
+</LinearLayout>

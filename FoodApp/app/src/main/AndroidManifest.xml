@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.khmkau.codeu.foodapp" >
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +12,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,22 +36,23 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".PercentagesNutritionActivity"
-            android:label="@string/nutrition_detail_per">
+            android:label="@string/nutrition_detail_per" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
         <activity
             android:name=".ListNutritionActivity"
-            android:label="@string/nutrition_detail_list">
+            android:label="@string/nutrition_detail_list" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
@@ -63,10 +64,35 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
-        <provider
-            android:authorities="com.khmkau.codeu.foodapp.app"
-            android:name=".data.FoodProvider" />
-    </application>
 
+        <provider
+            android:name=".data.FoodProvider"
+            android:authorities="com.khmkau.codeu.foodapp.app" />
+
+        <activity
+            android:name=".InputMenuActivity"
+            android:label="@string/title_activity_input_menu"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ManualInputActivity"
+            android:label="@string/title_activity_manual_input"
+            android:parentActivityName=".InputMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.InputMenuActivity" />
+        </activity>
+        <activity
+            android:name=".ExistingInputActivity"
+            android:label="@string/title_activity_existing_input"
+            android:parentActivityName=".InputMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.InputMenuActivity" />
+        </activity>
+    </application>
 
 </manifest>
