@@ -45,11 +45,6 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        LimitLine line = new LimitLine(100.000f);
-        line.setTextColor(Color.RED);
-        line.setTextSize(20f);
-        xAxis.addLimitLine(line);
-
         chart.animateXY(2000, 2000);
         chart.invalidate();
 
@@ -58,13 +53,9 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 selection = String.valueOf(spinner.getSelectedItem());
-                // Log.i("itemSelected: ", "Value of Selection is: " + selection);
 
                 data = new BarData(getXAxisValues(), getDataSet());
-
                 data.setGroupSpace(30f);
-
-                // BarChart chart = (BarChart) findViewById(R.id.chart);
 
                 chart.setData(data);
                 chart.setNoDataText("");
@@ -111,8 +102,6 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
     public float[] computeRecommendedValues() {
 
         return new float[] {2000, 65, 20, 300, 2400, 300, 25, 50, 1000, 18, 5000, 60};
-        // String [] units = {"Cal", "g", "g", "mg", "mg", "g", "g", "g", "mg", "mg", "IU", "mg"};
-
     }
 
     private ArrayList<BarDataSet> getDataSet() {
@@ -132,28 +121,22 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         else if(selection.equals("Month"))
             multiplier = 30;
 
-        // need to iterate backwards because of the backwards order?
+        // need to iterate backwards because of the backwards order
         int index = (consumedValues.length - 1);
         for(int i = 0; i < consumedValues.length; i++){
             // compute percentage
-            float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier)*100);
+            float percentage = consumedValues[i]/(recommendedValues[i]*multiplier)*100;
             valueSet1.add(new BarEntry(percentage, index));
             index--;
         }
 
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Consumption % (Compared to Recommended* Values)");
-        // barDataSet1.setColor(Color.rgb(70, 137, 253)); // Color.rgb(80, 255, 150),  (green)
-        int[] colorArray = {Color.rgb(80, 255, 150), Color.rgb(70, 137, 253)}; // Color.rgb(123,104,238)} (purple)
-
-
+        int[] colorArray = {Color.rgb(80, 255, 150), Color.rgb(70, 137, 253)};
         barDataSet1.setColors(colorArray);
-//        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Recommended");
-//        barDataSet2.setColor(Color.rgb(86, 250, 152));
-
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
-        // dataSets.add(barDataSet2);
+
         return dataSets;
     }
 

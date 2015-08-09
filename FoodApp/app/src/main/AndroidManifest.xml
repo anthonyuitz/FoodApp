@@ -57,7 +57,7 @@
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".PreferencesActivity"
             android:label="@string/title_activity_settings" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

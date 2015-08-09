@@ -2,8 +2,10 @@ package com.khmkau.codeu.foodapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -30,12 +32,16 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_percentage_consumption);
 
+        // Get Settings
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        age = Integer.parseInt(SP.getString("age", "18"));
+        // boolean gender = SP.getBoolean("gender", true);
+        weight = Integer.parseInt(SP.getString("weight","120"));
+        Log.i("Settings", age + " " + " " + weight);
+
         chart = (HorizontalBarChart) findViewById(R.id.hchart);
-
         spinner = (Spinner)findViewById(R.id.spinner);
-
         recommendedValues = computeRecommendedValues();
-
         selection = "Day"; // default value
 
         data = new BarData(getXAxisValues(), getDataSet());
@@ -45,16 +51,9 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         chart.setDescription("Percentage");
         chart.setDescriptionTextSize(16f);
         chart.setDescriptionColor(Color.DKGRAY);
-        // chart.setVisibleXRange(3);
-        // chart.fitScreen();
 
         xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        LimitLine line = new LimitLine(100.000f);
-        line.setTextColor(Color.RED);
-        line.setTextSize(20f);
-        xAxis.addLimitLine(line);
 
         chart.animateXY(2000, 2000);
         chart.invalidate();
@@ -64,8 +63,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 selection = String.valueOf(spinner.getSelectedItem());
-                // Log.i("itemSelected: ", "Value of Selection is: " + selection);
-
                 data = new BarData(getXAxisValues(), getDataSet());
 
                 data.setGroupSpace(30f);
@@ -91,7 +88,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
             }
 
         });
-        // selection = String.valueOf(spinner.getSelectedItem());
     }
 
     private String selection;
@@ -100,11 +96,13 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     private BarData data;
     private XAxis xAxis;
 
+    private int age;
+    private int weight;
+
     public void changeView(View view)
     {
         Intent intent = new Intent(this, ServingsConsumptionActivity.class);
         startActivity(intent);
-        Log.i("Consumption Activity", "Switching activities");
     }
 
     private float[] recommendedValues;
@@ -112,9 +110,7 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     public float[] computeRecommendedValues() {
 
         // TODO: get values from the settings
-        int age = 60;
         boolean male = true; // false if female
-        float weight = 150;
 
         float waterRec = (0.5f * weight)/8f;
 
@@ -188,7 +184,7 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         int index = (consumedValues.length - 1);
         for(int i = 0; i < consumedValues.length; i++){
             // compute percentage
-            float percentage = (float)(consumedValues[i]/(recommendedValues[i]*multiplier)*100);
+            float percentage = consumedValues[i]/(recommendedValues[i]*multiplier)*100;
             valueSet1.add(new BarEntry(percentage, index));
             index--;
         }
@@ -197,43 +193,21 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         // barDataSet1.setColor(Color.rgb(70, 137, 253));
         int[] colorArray = {Color.rgb(80, 255, 150), Color.rgb(70, 137, 253)};
 
-
         barDataSet1.setColors(colorArray);
-//        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Recommended");
-//        barDataSet2.setColor(Color.rgb(86, 250, 152));
 
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
-        // dataSets.add(barDataSet2);
         return dataSets;
     }
 
     private ArrayList<String> getXAxisValues() {
         ArrayList<String> xAxis = new ArrayList<>();
 
-        Display display = getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-        float density = getResources().getDisplayMetrics().density;
-        float dpwidth = outMetrics.widthPixels/density;
-
-        Log.i("ConsumptionActivity", "density: " + dpwidth);
-
-        float scalingFactor = getResources().getDisplayMetrics().density;
-        Log.i("ConsumptionActivity", "Scaling factor: " + scalingFactor);
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
-        // int screenHeight = displayMetrics.heightPixels;
 
-        Log.i("ConsumptionActivity", "screenWidth: " + screenWidth);
-
-
-
-        // somehow differentiate between screen widths...
-            // Don't use abbreviations if it is Nexus 7/10?
         if(screenWidth < 0) {
             xAxis.add("h2o");
             xAxis.add("Dry");
