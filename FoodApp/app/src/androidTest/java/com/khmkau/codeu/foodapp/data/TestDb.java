@@ -85,21 +85,6 @@ public class TestDb extends AndroidTestCase {
         locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_TOTAL_CARBOHYDRATE);
         locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_SUGAR);
         locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_PROTEIN);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_VIT_A);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_VIT_D);
-        locationColumnHashSet.add(FoodContract.InfoEntry. COLUMN_VIT_E);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_VIT_C);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_THIAMIN);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_RIBOFLAVIN);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_NIACIN);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_VIT_B6);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_VIT_B12);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_CALCIUM);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_PHOSPHOROUS);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_MAGNESIUM);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_IRON );
-        locationColumnHashSet.add(FoodContract.InfoEntry. COLUMN_ZINC);
-        locationColumnHashSet.add(FoodContract.InfoEntry.COLUMN_IODINE);
         int columnNameIndex = c.getColumnIndex("name");
         do {
             String columnName = c.getString(columnNameIndex);

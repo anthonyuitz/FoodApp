@@ -226,21 +226,7 @@ public class FoodContract {
         public static final String COLUMN_TOTAL_CARBOHYDRATE = "total_carbohydrate";
         public static final String COLUMN_SUGAR = "sugar";
         public static final String COLUMN_PROTEIN = "protein";
-        public static final String COLUMN_VIT_A = "vit_a";
-        public static final String COLUMN_VIT_D = "vit_d";
-        public static final String COLUMN_VIT_E = "vit_e";
-        public static final String COLUMN_VIT_C = "vit_c";
-        public static final String COLUMN_THIAMIN = "thiamin";
-        public static final String COLUMN_RIBOFLAVIN = "riboflavin";
-        public static final String COLUMN_NIACIN = "niacin";
-        public static final String COLUMN_VIT_B6 = "vit_b6";
-        public static final String COLUMN_VIT_B12 = "vit_b12";
-        public static final String COLUMN_CALCIUM = "calcium";
-        public static final String COLUMN_PHOSPHOROUS = "phosphorous";
-        public static final String COLUMN_MAGNESIUM = "magnesium";
-        public static final String COLUMN_IRON = "iron";
-        public static final String COLUMN_ZINC = "zinc";
-        public static final String COLUMN_IODINE = "iodine";
+
 
         public static Uri buildInfoUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
