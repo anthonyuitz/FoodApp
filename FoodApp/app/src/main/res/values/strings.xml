@@ -76,4 +76,35 @@
     <string name="title_activity_manual_input">ManualInputActivity</string>
     <string name="title_activity_existing_input">ExistingInputActivity</string>
 
+    <string name="add_to_label">Adding to:</string>
+    <string name="food_name_label">Name:</string>
+    <string name="quantity_label">Quantity:</string>
+    <string name="purchased_by_label">Bought:</string>
+    <string name="expires_by_label">Expires:</string>
+    <string name="foodgroup_label">Food Group:</string>
+    <string name="total_cost_label">Total Cost:</string>
+    <string name="calories_label">Calories:</string>
+    <string name="total_fat_label">Total Fat:</string>
+    <string name="saturated_fat_label">Saturated Fat:</string>
+    <string name="trans_fat_label">Trans Fat:</string>
+    <string name="cholesterol_label">Cholesterol:</string>
+    <string name="sodium_label">Sodium:</string>
+    <string name="total_carbs_label">Total Carbs:</string>
+    <string name="sugar_label">Sugar:</string>
+    <string name="protein_label">Protein:</string>
+    <string name="consumed_by_label">Consumed:</string>
+    <string name="thrown_by_label">Thrown:</string>
+
+    <string-array name="table_array">
+        <item>Current</item>
+        <item>Consumed</item>
+        <item>Thrown</item>
+    </string-array>
+
+    <string-array name="quantity_array">
+        <item>g</item>
+        <item>mg</item>
+        <item>temp</item>
+    </string-array>
+
 </resources>
