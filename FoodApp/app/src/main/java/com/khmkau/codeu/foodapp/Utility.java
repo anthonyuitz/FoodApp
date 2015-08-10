@@ -1,5 +1,8 @@
 package com.khmkau.codeu.foodapp;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  * Created by Melissa on 8/7/2015.
  */
@@ -10,6 +13,11 @@ public class Utility {
 //        return prefs.getString(context.getString(R.string.pref_location_key),
 //                context.getString(R.string.pref_location_default));
 //    }
+
+    public static String formatDate(long dateInMilliseconds) {
+        Date date = new Date(dateInMilliseconds);
+        return DateFormat.getDateInstance().format(date);
+    }
 
     public static int getImgResourceForFoodGroup(String foodGroup) {
         if (foodGroup.equalsIgnoreCase("Dairy")) {

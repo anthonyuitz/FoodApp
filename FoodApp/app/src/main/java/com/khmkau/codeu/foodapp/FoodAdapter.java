@@ -27,7 +27,7 @@ public class FoodAdapter extends CursorAdapter {
             iconView = (ImageView) view.findViewById(R.id.list_item_icon);
             foodNameView = (TextView) view.findViewById(R.id.list_item_food_textview);
             servingsView = (TextView) view.findViewById(R.id.list_food_serving_textview);
-            expDateView = (TextView) view.findViewById(R.id.list_item_exp_textview);
+            expDateView = (TextView) view.findViewById(R.id.list_item_exp_date_textview);
         }
     }
 
@@ -65,10 +65,10 @@ public class FoodAdapter extends CursorAdapter {
 //        boolean isMetric = Utility.isMetric(context);
 
         // Read expiration date from cursor
-        String expiration = cursor.getString(FoodFragment.COL_EXPIRATION_DATE);
+        long expiration = cursor.getLong(FoodFragment.COL_EXPIRATION_DATE);
           //  TODO: extra functionality: format date so that it displays, "today", "tomorrow", or the date... or # days left til exp
 //        viewHolder.expDateView.setText(Utility.formatDate(expiration));
-        viewHolder.expDateView.setText(expiration);
+        viewHolder.expDateView.setText(Utility.formatDate(expiration));
 
         // TODO: extra functionality... change expiration date color so that...
         // RED = expires today or tomorrow
@@ -81,7 +81,11 @@ public class FoodAdapter extends CursorAdapter {
     // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.list_item_food, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_food, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setTag(viewHolder);
+        return view;
+        // return LayoutInflater.from(context).inflate(R.layout.list_item_food, parent, false);
     }
 
 }
