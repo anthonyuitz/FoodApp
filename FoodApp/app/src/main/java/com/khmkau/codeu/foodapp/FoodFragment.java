@@ -75,8 +75,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        FoodDbHelper dbHelper = new FoodDbHelper(getActivity());
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues infoValues = new ContentValues();
         infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
@@ -89,9 +87,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
         long infoRowId = ContentUris.parseId(insertedUri);
 
-//        // Third Step: Insert ContentValues into database and get a row ID back
-//        long infoRowId = db.insert(FoodContract.InfoEntry.TABLE_NAME, null, infoValues);
-
         ContentValues currentValues = new ContentValues();
         currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
         currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
@@ -100,12 +95,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
         getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
 
-        // long currentRowId = db.insert(FoodContract.ConsumedEntry.TABLE_NAME, null, currentValues);
-
-        // dbHelper.close();
-        // db.close();
-
-        // PROBLEM: the join isn't registered with this cursor adapter
 
 
 
