@@ -106,18 +106,6 @@ public class FoodProvider extends ContentProvider {
                     "." + FoodContract.ThrownEntry.COLUMN_DATE_THROWN + " >= ? AND " +
                     FoodContract.ThrownEntry.COLUMN_DATE_THROWN + " <= ? ";
 
-// TODO delete if necessary... Melissa's sandbox methond
-    private Cursor getCurrentWithInfo(Uri uri, String[] projection, String sortOrder) {
-        return sCurrentWithInfoQueryBuilder.query(mOpenHelper.getReadableDatabase(),
-                projection,
-                null,
-                null,
-                null,
-                null,
-                sortOrder
-        );
-    }
-
     private Cursor getCurrentByExpiration(Uri uri, String[] projection, String sortOrder) {
         long Expiration = FoodContract.CurrentEntry.getExpirationFromUri(uri);
 
@@ -340,16 +328,15 @@ public class FoodProvider extends ContentProvider {
             }
             // "current"
             case CURRENT: {
-                retCursor = getCurrentWithInfo(uri, projection, sortOrder);
-//                retCursor = mOpenHelper.getReadableDatabase().query(
-//                        FoodContract.CurrentEntry.TABLE_NAME,
-//                        projection,
-//                        selection,
-//                        selectionArgs,
-//                        null,
-//                        null,
-//                        sortOrder
-//                );
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        FoodContract.CurrentEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
                 break;
             }
             // "weather/#"
