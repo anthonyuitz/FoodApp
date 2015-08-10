@@ -12,7 +12,7 @@ import com.khmkau.codeu.foodapp.data.FoodContract.ConsumedEntry;
 public class FoodDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     static final String DATABASE_NAME = "food.db";
 
@@ -25,7 +25,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_INFO_TABLE = "CREATE TABLE " + InfoEntry.TABLE_NAME + " (" +
                 InfoEntry._ID + " INTEGER PRIMARY KEY," +
                 InfoEntry.COLUMN_FOOD_NAME + " TEXT NOT NULL, " +
-                InfoEntry.COLUMN_FOOD_GROUP + " TEXT, " +
+                InfoEntry.COLUMN_FOOD_GROUP + " TEXT NOT NULL, " +
                 InfoEntry.COLUMN_SERVING_UNIT + " TEXT NOT NULL, " +
                 InfoEntry.COLUMN_CALORIES + " INTEGER NOT NULL, " +
                 InfoEntry.COLUMN_SATURATED_FAT + " INTEGER, " +
@@ -35,30 +35,15 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 InfoEntry.COLUMN_SODIUM + " INTEGER, " +
                 InfoEntry.COLUMN_TOTAL_CARBOHYDRATE + " INTEGER, " +
                 InfoEntry.COLUMN_SUGAR + " INTEGER, " +
-                InfoEntry.COLUMN_PROTEIN + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_A + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_D + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_E + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_C + " INTEGER, " +
-                InfoEntry.COLUMN_THIAMIN + " INTEGER, " +
-                InfoEntry.COLUMN_RIBOFLAVIN + " INTEGER, " +
-                InfoEntry.COLUMN_NIACIN + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_B6 + " INTEGER, " +
-                InfoEntry.COLUMN_VIT_B12 + " INTEGER, " +
-                InfoEntry.COLUMN_CALCIUM + " INTEGER, " +
-                InfoEntry.COLUMN_PHOSPHOROUS + " INTEGER, " +
-                InfoEntry.COLUMN_MAGNESIUM + " INTEGER, " +
-                InfoEntry.COLUMN_IRON + " INTEGER, " +
-                InfoEntry.COLUMN_ZINC + " INTEGER, " +
-                InfoEntry.COLUMN_IODINE + " INTEGER " +
+                InfoEntry.COLUMN_PROTEIN + " INTEGER " +
                 " );";
 
         final String SQL_CREATE_CURRENT_TABLE = "CREATE TABLE " + CurrentEntry.TABLE_NAME + " (" +
                 CurrentEntry._ID + " INTEGER PRIMARY KEY," +
                 CurrentEntry.COLUMN_DATE_PURCHASED + " INTEGER, " +
                 CurrentEntry.COLUMN_EXPIRATION_DATE + " INTEGER, " +
-                CurrentEntry.COLUMN_FOOD_KEY + " INTEGER, " +
-                CurrentEntry.COLUMN_QUANTITY + " INTEGER, " +
+                CurrentEntry.COLUMN_FOOD_KEY + " INTEGER NOT NULL, " +
+                CurrentEntry.COLUMN_QUANTITY + " INTEGER NOT NULL, " +
                 CurrentEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + CurrentEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
                 InfoEntry.TABLE_NAME + " (" + InfoEntry._ID + "));";
@@ -67,8 +52,8 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 ThrownEntry._ID + " INTEGER PRIMARY KEY," +
                 ThrownEntry.COLUMN_DATE_PURCHASED + " INTEGER, " +
                 ThrownEntry.COLUMN_EXPIRATION_DATE + " INTEGER, " +
-                ThrownEntry.COLUMN_FOOD_KEY + " INTEGER, " +
-                ThrownEntry.COLUMN_QUANTITY + " INTEGER, " +
+                ThrownEntry.COLUMN_FOOD_KEY + " INTEGER NOT NULL, " +
+                ThrownEntry.COLUMN_QUANTITY + " INTEGER NOT NULL, " +
                 ThrownEntry.COLUMN_DATE_THROWN + " INTEGER, " +
                 ThrownEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + ThrownEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
@@ -78,8 +63,8 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 ConsumedEntry._ID + " INTEGER PRIMARY KEY," +
                 ConsumedEntry.COLUMN_DATE_PURCHASED + " INTEGER, " +
                 ConsumedEntry.COLUMN_EXPIRATION_DATE + " INTEGER, " +
-                ConsumedEntry.COLUMN_FOOD_KEY + " INTEGER, " +
-                ConsumedEntry.COLUMN_QUANTITY + " INTEGER, " +
+                ConsumedEntry.COLUMN_FOOD_KEY + " INTEGER NOT NULL, " +
+                ConsumedEntry.COLUMN_QUANTITY + " INTEGER NOT NULL, " +
                 ConsumedEntry.COLUMN_DATE_CONSUMED + " INTEGER, " +
                 ConsumedEntry.COLUMN_VALUE + " INTEGER, " +
                 " FOREIGN KEY (" + ConsumedEntry.COLUMN_FOOD_KEY + ") REFERENCES " +
