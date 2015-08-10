@@ -91,21 +91,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         infoValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_CARBOHYDRATE, 5);
         infoValues.put(FoodContract.InfoEntry.COLUMN_SUGAR, 5);
         infoValues.put(FoodContract.InfoEntry.COLUMN_PROTEIN, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_A, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_D, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_E, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_C, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_THIAMIN, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_RIBOFLAVIN, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_NIACIN, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B6, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B12, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_CALCIUM, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_PHOSPHOROUS, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_MAGNESIUM, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_IRON, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_ZINC, 5);
-        infoValues.put(FoodContract.InfoEntry.COLUMN_IODINE, 5);
 
         Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
 
