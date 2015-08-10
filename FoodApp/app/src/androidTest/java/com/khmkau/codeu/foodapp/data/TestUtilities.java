@@ -78,19 +78,53 @@ public class TestUtilities extends AndroidTestCase {
         return consumedValues;
     }
 
-    /*
-        Students: You can uncomment this helper function once you have finished creating the
-        LocationEntry part of the WeatherContract.
-     */
     static ContentValues createFoodInfoValues() {
-        // Create a new map of values, where column names are the keys
-        ContentValues testValues = new ContentValues();
-        testValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
-        testValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Orange");
-        testValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 150);
+        ContentValues infoValues = new ContentValues();
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SATURATED_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TRANS_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CHOLESTEROL, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SODIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_CARBOHYDRATE, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SUGAR, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_PROTEIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_A, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_D, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_E, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_C, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_THIAMIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_RIBOFLAVIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_NIACIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B6, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B12, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CALCIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_PHOSPHOROUS, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_MAGNESIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_IRON, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_ZINC, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_IODINE, 5);
 
-        return testValues;
+        return infoValues;
     }
+
+
+//    /*
+//        Students: You can uncomment this helper function once you have finished creating the
+//        LocationEntry part of the WeatherContract.
+//     */
+//    static ContentValues createFoodInfoValues() {
+//        // Create a new map of values, where column names are the keys
+//        ContentValues testValues = new ContentValues();
+//        testValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
+//        testValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Orange");
+//        testValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 150);
+//
+//        return testValues;
+//    }
 
     /*
         Students: You can uncomment this function once you have finished creating the
@@ -106,7 +140,7 @@ public class TestUtilities extends AndroidTestCase {
         locationRowId = db.insert(FoodContract.InfoEntry.TABLE_NAME, null, testValues);
 
         // Verify we got a row back.
-        assertTrue("Error: Failure to insert North Pole Location Values", locationRowId != -1);
+        assertTrue("Error: Failure to insert food info values", locationRowId != -1);
 
         return locationRowId;
     }

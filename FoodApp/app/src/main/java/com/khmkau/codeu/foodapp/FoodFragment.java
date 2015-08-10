@@ -4,6 +4,8 @@ package com.khmkau.codeu.foodapp;
  * Created by Melissa on 7/26/2015.
  */
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -32,7 +34,7 @@ import com.khmkau.codeu.foodapp.data.FoodContract;
  * A fragment containing a simple view of the Food items.
  */
 public class FoodFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
+//    public class FoodFragment extends Fragment {
 //    private ArrayAdapter<String> foodAdapter; // HARD CODED ARRAY EXAMPLE
     private FoodAdapter foodAdapter;
     private SwipeMenuListView listView;
@@ -55,12 +57,81 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     static final int COL_EXPIRATION_DATE = 3;
     static final int COL_FOOD_GROUP = 4;
 
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onItemSelected(Uri dateUri);
+    }
+
     public FoodFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+//        FoodDbHelper dbHelper = new FoodDbHelper(getActivity());
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues infoValues = new ContentValues();
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SATURATED_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TRANS_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_FAT, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CHOLESTEROL, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SODIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_CARBOHYDRATE, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SUGAR, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_PROTEIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_A, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_D, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_E, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_C, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_THIAMIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_RIBOFLAVIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_NIACIN, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B6, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_VIT_B12, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CALCIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_PHOSPHOROUS, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_MAGNESIUM, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_IRON, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_ZINC, 5);
+        infoValues.put(FoodContract.InfoEntry.COLUMN_IODINE, 5);
+
+        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
+
+        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+        long infoRowId = ContentUris.parseId(insertedUri);
+
+//        // Third Step: Insert ContentValues into database and get a row ID back
+//        long infoRowId = db.insert(FoodContract.InfoEntry.TABLE_NAME, null, infoValues);
+
+        ContentValues currentValues = new ContentValues();
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
+
+        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
+
+        // long currentRowId = db.insert(FoodContract.ConsumedEntry.TABLE_NAME, null, currentValues);
+
+        // dbHelper.close();
+        // db.close();
+
+        // PROBLEM: the join isn't registered with this cursor adapter
+
+
+
         // TODO layout uses fridge or main? This is what sunny uses:
         // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         View rootView = inflater.inflate(R.layout.fragment_fridge, container, false);
@@ -95,24 +166,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 //                foodItems);
 //
 //         SwipeMenuListView listView = (SwipeMenuListView)rootView.findViewById(R.id.ListViewFood);
-
-        /* Original code
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                            @Override
-                                            public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-
-                                                // displays a momentary "toast" message... demonstrates that an action will
-                                                // occur on item click
-                                                String foodDetails = foodAdapter.getItem(index);
-                                                // Toast.makeText(getActivity(), foodDetails, Toast.LENGTH_SHORT).show();
-
-                                                // launchs an explicit intent to switch to the nutritional detail activity
-                                                Intent intent = new Intent(getActivity(), NutritionalDetailActivity.class)
-                                                        .putExtra(Intent.EXTRA_TEXT, foodDetails); // passes in the food detail info to the detail activity
-                                                startActivity(intent);
-                                            }
-                                        }
-        ); */
 
         listView.setAdapter(foodAdapter);
 
@@ -151,6 +204,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
                         DialogFragment eatFragment = new EatDialogFragment();
                         eatFragment.show(getFragmentManager(), "eat");
+
 
                         break;
                     case 1: // trash food
@@ -197,9 +251,9 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 int index = parentView.getSelectedItemPosition();
                 // TODO: change foodAdapter with appropriate SORT QUERY and notify that the adapter has changed!
-                listView.setAdapter(foodAdapter);
+                // listView.setAdapter(foodAdapter);
 
-                Toast.makeText(getActivity(), "You have selected item : " + index, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You have selected item " + index, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -216,6 +270,12 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        getLoaderManager().initLoader(FOOD_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // This is called when a new Loader needs to be created.  This
         // fragment only uses one loader, so we don't care about checking the id.
@@ -223,7 +283,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         // To only show current and future dates, filter the query to return weather only for
         // dates after or including today.
 
-        // Sort order:  Ascending, by date.
 //        TODO: delete later
 //        String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
 //
@@ -239,7 +298,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 //                sortOrder);
 
         ///////////////////// food implementation? /////////////////////////////////////
-        String sortOrder = FoodContract.InfoEntry.COLUMN_FOOD_NAME + " ASC";
+        // String sortOrder = FoodContract.InfoEntry.COLUMN_FOOD_NAME + " ASC";
 
         Uri currentFoodUri = FoodContract.CurrentEntry.CONTENT_URI;
 
@@ -248,7 +307,8 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
                 FOOD_COLUMNS,
                 null,
                 null,
-                sortOrder);
+                null); //sortOrder
+
     }
 
     @Override

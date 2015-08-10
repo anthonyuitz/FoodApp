@@ -333,7 +333,7 @@ public class TestDb extends AndroidTestCase {
         long infoRowId = insertFoodInfo();
 
         // Make sure we have a valid row ID.
-        assertFalse("Error: Location Not Inserted Correctly", infoRowId == -1L);
+        assertFalse("Error: Food Info Not Inserted Correctly", infoRowId == -1L);
 
         // First step: Get reference to writable database
         // If there's an error in those massive SQL table creation Strings,
@@ -389,6 +389,7 @@ public class TestDb extends AndroidTestCase {
         FoodDbHelper dbHelper = new FoodDbHelper(mContext);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+
         // Second Step: Create ContentValues of what you want to insert
         // (you can use the createNorthPoleLocationValues if you wish)
         ContentValues testValues = TestUtilities.createFoodInfoValues();
@@ -417,16 +418,16 @@ public class TestDb extends AndroidTestCase {
 
         // Move the cursor to a valid database row and check to see if we got any records back
         // from the query
-        assertTrue( "Error: No Records returned from location query", cursor.moveToFirst() );
+        assertTrue( "Error: No Records returned from food info query", cursor.moveToFirst() );
 
         // Fifth Step: Validate data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
-        TestUtilities.validateCurrentRecord("Error: Location Query Validation Failed",
+        TestUtilities.validateCurrentRecord("Error: Food Info Query Validation Failed",
                 cursor, testValues);
 
         // Move the cursor to demonstrate that there is only one record in the database
-        assertFalse( "Error: More than one record returned from location query",
+        assertFalse( "Error: More than one record returned from food info query",
                 cursor.moveToNext() );
 
         // Sixth Step: Close Cursor and Database
