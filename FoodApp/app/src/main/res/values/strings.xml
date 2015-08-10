@@ -67,5 +67,13 @@
     <string name="cancel_label">Cancel</string>
     <string name="eat_label">Eat</string>
     <string name="trash_label">Trash</string>
+    <string name="title_activity_input_menu">InputMenuActivity</string>
+
+    <string name="manual_input">Manually Input Food</string>
+    <string name="existing_input">Add To Existing Food</string>
+    <string name="barcode_input">Scan Barcode</string>
+    <string name="receipt_input">Use Picture of Receipt</string>
+    <string name="title_activity_manual_input">ManualInputActivity</string>
+    <string name="title_activity_existing_input">ExistingInputActivity</string>
 
 </resources>

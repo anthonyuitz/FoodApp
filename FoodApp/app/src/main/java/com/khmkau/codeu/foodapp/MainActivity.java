@@ -37,12 +37,12 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //    public void foodView(View view)
-//    {
-//        Intent intent = new Intent(this, *activityname*.class);
-//        startActivity(intent);
-//    }
-//
+    public void foodView(View view)
+    {
+        Intent intent = new Intent(this, InputMenuActivity.class);
+        startActivity(intent);
+    }
+
     public void fridgeView(View view)
     {
         Intent intent = new Intent(this, FridgeActivity.class);
