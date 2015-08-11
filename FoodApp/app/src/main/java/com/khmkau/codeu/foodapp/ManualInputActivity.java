@@ -1,6 +1,8 @@
 package com.khmkau.codeu.foodapp;
 
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +15,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.Toast;
+
+import com.khmkau.codeu.foodapp.data.FoodContract;
+import com.khmkau.codeu.foodapp.data.FoodDbHelper;
 
 import java.util.Calendar;
 
@@ -167,6 +172,64 @@ public class ManualInputActivity extends AppCompatActivity implements AdapterVie
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+
+    public void inputFood(View view) {
+        Toast.makeText(getApplicationContext(), "This feature is not yet implemented. Sorry!",
+                Toast.LENGTH_SHORT).show();
+
+        ContentValues infoValues = new ContentValues();
+
+        ContentValues foodValues = new ContentValues();
+
+        EditText nameTextView = (EditText)findViewById(R.id.editName);
+        EditText quantityTextView = (EditText)findViewById(R.id.editQuantity);
+        EditText purchasedByTextView = (EditText)findViewById(R.id.editPurchasedBy);
+        EditText expiredByTextView = (EditText)findViewById(R.id.editExpiresBy);
+        EditText foodgroupTextView = (EditText)findViewById(R.id.editFoodGroup);
+        EditText totalCostTextView = (EditText)findViewById(R.id.editTotalCost);
+        EditText caloriesTextView = (EditText)findViewById(R.id.editCalories);
+        EditText totalFatTextView = (EditText)findViewById(R.id.editTotalFat);
+        EditText satFatTextView = (EditText)findViewById(R.id.editSatFat);
+        EditText transFatTextView = (EditText)findViewById(R.id.editTransFat);
+        EditText cholesterolTextView = (EditText)findViewById(R.id.editCholesterol);
+        EditText sodiumTextView = (EditText)findViewById(R.id.editSodium);
+        EditText totalCarbsTextView = (EditText)findViewById(R.id.editTotalCarbs);
+        EditText sugarTextView = (EditText)findViewById(R.id.editSugar);
+        EditText proteinTextView = (EditText)findViewById(R.id.editProtein);
+        Spinner servingTextView = (Spinner)findViewById(R.id.quantitySpinner);
+
+        String nameText = nameTextView.getText().toString();
+        String quantityText = quantityTextView.getText().toString();
+        String purchasedByText = purchasedByTextView.getText().toString();
+        String expiredByText = expiredByTextView.getText().toString();
+        String foodgroupText = foodgroupTextView.getText().toString();
+        String totalCostText = totalCostTextView.getText().toString();
+        String caloriesText = caloriesTextView.getText().toString();
+        String totalFatText = totalFatTextView.getText().toString();
+        String satFatText = satFatTextView.getText().toString();
+        String transFatText = transFatTextView.getText().toString();
+        String cholesterolText = cholesterolTextView.getText().toString();
+        String sodiumText = sodiumTextView.getText().toString();
+        String totalCarbsText = totalCarbsTextView.getText().toString();
+        String sugarText = sugarTextView.getText().toString();
+        String proteinText = proteinTextView.getText().toString();
+        String servingText = servingTextView.getSelectedItem().toString();
+
+        Spinner tableTextView = (Spinner)findViewById(R.id.tableSpinner);
+        String tableText = tableTextView.getSelectedItem().toString();
+
+        //check which table is being inserted to and get relevant fields
+
+        //error checking here yo
+        //if error, set hints & hint color saying what the issue is
+        //if not continue to insert
+
+        //insert into infoValues/FoodValues depending on which field it is
+
+        long id = ContentUris.parseId(getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues));
+
+        //insert into current/thrown/consumed db using id for food_key depending on spinner text
     }
 
     @Override
