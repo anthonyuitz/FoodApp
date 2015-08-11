@@ -114,6 +114,9 @@
         <item>temp</item>
     </string-array>
 
+    <string name="grams">g</string>
+    <string name="milligrams">mg</string>
+
     <string name="addButton">Add Food</string>
 
     <string name="quantity_error">Required Field</string>

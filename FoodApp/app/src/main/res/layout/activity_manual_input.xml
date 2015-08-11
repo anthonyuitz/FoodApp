@@ -101,6 +101,7 @@
                 android:singleLine="true"
                 android:focusable="false">
             </EditText>
+
         </TableRow>
         <TableRow>
 
@@ -212,15 +213,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_fat_label" >
             </TextView>
-
-            <EditText
-                android:id="@+id/editTotalFat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:singleLine="true"
-                android:inputType="number">
-            </EditText>
+            <LinearLayout>
+                <EditText
+                    android:id="@+id/editTotalFat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:inputType="number">
+                </EditText>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/grams" >
+                </TextView>
+            </LinearLayout>
         </TableRow>
 
         <TableRow>
@@ -231,14 +240,23 @@
                 android:text="@string/saturated_fat_label" >
             </TextView>
 
+            <LinearLayout>
             <EditText
                 android:id="@+id/editSatFat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:singleLine="true"
+                android:layout_weight="1"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/grams" >
+            </TextView>
+            </LinearLayout>
         </TableRow>
         <TableRow>
 
@@ -247,15 +265,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/trans_fat_label" >
             </TextView>
-
+            <LinearLayout>
             <EditText
                 android:id="@+id/editTransFat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:inputType="number">
             </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/grams" />
+            </LinearLayout>
         </TableRow>
 
         <TableRow>
@@ -265,15 +291,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cholesterol_label" >
             </TextView>
-
+            <LinearLayout>
             <EditText
                 android:id="@+id/editCholesterol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/milligrams" />
+            </LinearLayout>
         </TableRow>
         <TableRow>
 
@@ -283,14 +316,22 @@
                 android:text="@string/sodium_label" >
             </TextView>
 
+            <LinearLayout>
             <EditText
                 android:id="@+id/editSodium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:singleLine="true"
+                android:layout_weight="1"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/milligrams" />
+            </LinearLayout>
         </TableRow>
         <TableRow>
 
@@ -299,15 +340,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_carbs_label" >
             </TextView>
-
+            <LinearLayout>
             <EditText
                 android:id="@+id/editTotalCarbs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/grams" />
+            </LinearLayout>
         </TableRow>
         <TableRow>
 
@@ -316,15 +364,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sugar_label" >
             </TextView>
-
+            <LinearLayout>
             <EditText
                 android:id="@+id/editSugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/grams" />
+            </LinearLayout>
         </TableRow>
         <TableRow>
 
@@ -333,15 +388,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/protein_label" >
             </TextView>
-
+            <LinearLayout>
             <EditText
                 android:id="@+id/editProtein"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:inputType="number">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/grams" />
+            </LinearLayout>
         </TableRow>
 
         <Button
