@@ -74,7 +74,7 @@
             />
 
         <TextView
-            android:id="@+id/list_food_expdate_textview"
+            android:id="@+id/list_item_exp_date_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 

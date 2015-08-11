@@ -75,8 +75,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        FoodDbHelper dbHelper = new FoodDbHelper(getActivity());
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues infoValues = new ContentValues();
         infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
@@ -89,9 +87,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
         long infoRowId = ContentUris.parseId(insertedUri);
 
-//        // Third Step: Insert ContentValues into database and get a row ID back
-//        long infoRowId = db.insert(FoodContract.InfoEntry.TABLE_NAME, null, infoValues);
-
         ContentValues currentValues = new ContentValues();
         currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
         currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
@@ -100,14 +95,28 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
         getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
 
-        // long currentRowId = db.insert(FoodContract.ConsumedEntry.TABLE_NAME, null, currentValues);
+//////////////////////
 
-        // dbHelper.close();
-        // db.close();
+        ContentValues infoValues2 = new ContentValues();
+        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Pork");
+        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Protein");
+        infoValues2.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "lbs");
+        infoValues2.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
 
-        // PROBLEM: the join isn't registered with this cursor adapter
+        Uri insertedUri2 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues2);
 
+        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+        long infoRowId2 = ContentUris.parseId(insertedUri2);
 
+        ContentValues currentValues2 = new ContentValues();
+        currentValues2.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId2);
+        currentValues2.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+        currentValues2.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+        currentValues2.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 11);
+
+        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
+
+//////////////////////
 
         // TODO layout uses fridge or main? This is what sunny uses:
         // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
