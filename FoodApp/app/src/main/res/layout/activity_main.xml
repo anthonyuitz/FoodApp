@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:orientation="vertical"
@@ -6,9 +7,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp">
-
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
 
     <Button
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:onClick="foodView"
         android:background="#ff55b1ff"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:textColor="#ffffffff" />
     <Button
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:onClick="fridgeView"
         android:background="#bb9e9e9e"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:textColor="#ffffffff" />
     <Button
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:layout_gravity="center"
         android:onClick="consumptionView"
         android:background="#ff55b1ff"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:textColor="#ffffffff" />
     <Button
         android:layout_width="match_parent"
@@ -49,16 +49,26 @@
         android:layout_gravity="center"
         android:onClick="nutritionView"
         android:background="#bb9e9e9e"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#ffffffff" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/waste_view"
+        android:id="@+id/button6"
+        android:layout_gravity="center"
+        android:onClick="wasteView"
+        android:background="#ff55b1ff"
+        android:layout_marginBottom="10dp"
         android:textColor="#ffffffff" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/disclaimer"
-        android:id="@+id/button6"
+        android:id="@+id/button7"
         android:layout_gravity="center"
         android:onClick="disclaimerView"
-        android:background="#ff55b1ff"
+        android:background="#bb9e9e9e"
         android:textColor="#ffffffff" />
 
 </LinearLayout>

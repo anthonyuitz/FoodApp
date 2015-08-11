@@ -7,6 +7,7 @@
     <string name="consumption_detail_ser">Consumption Data - Servings</string>
     <string name="nutrition_detail_list">Nutrition Data - List</string>
     <string name="nutrition_detail_per">Nutrition Data - Percentages</string>
+    <string name="activity_waste">Waste Information</string>
 
     <string name="description">Data to View: </string>
     <string name="disclaimer">*Disclaimer</string>
@@ -14,6 +15,8 @@
     <string name="percentages_view">View Percentages</string>
     <string name="servings_view">View Servings</string>
     <string name="list_view">View List</string>
+    <string name="waste_view">Waste</string>
+    <string name="image_credits">Image Credits</string>
 
     <string name="addFood">Add Food</string>
     <string name="seeFridge">See Fridge</string>

@@ -41,7 +41,11 @@ public class DisclaimerActivity extends ActionBarActivity {
         link4.setText(Html.fromHtml(linkText4));
         link4.setMovementMethod(LinkMovementMethod.getInstance());
 
-
+        // Image Credits
+        TextView link5 = (TextView) findViewById(R.id.textView8);
+        String linkText5 = "<a href='http://www.flaticon.com/authors/freepik'>Flat Icon</a>";
+        link5.setText(Html.fromHtml(linkText5));
+        link5.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 
