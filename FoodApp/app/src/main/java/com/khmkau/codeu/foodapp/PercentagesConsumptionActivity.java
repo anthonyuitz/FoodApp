@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -106,6 +107,13 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
     {
         Intent intent = new Intent(this, ServingsConsumptionActivity.class);
         startActivity(intent);
+    }
+
+    public void saveGraph(View view)
+    {
+        chart.saveToGallery("consumptionByPercentage.jpg", 85);
+        Toast.makeText(getApplicationContext(), "Graph saved to gallery",
+                Toast.LENGTH_SHORT).show();
     }
 
     private float[] recommendedValues;

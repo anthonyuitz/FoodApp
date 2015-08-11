@@ -17,6 +17,7 @@
     <string name="list_view">View List</string>
     <string name="waste_view">Waste</string>
     <string name="image_credits">Image Credits</string>
+    <string name="save_graph">Save Graph</string>
 
     <string name="addFood">Add Food</string>
     <string name="seeFridge">See Fridge</string>
@@ -113,6 +114,9 @@
         <item>mg</item>
         <item>temp</item>
     </string-array>
+
+    <string name="grams">g</string>
+    <string name="milligrams">mg</string>
 
     <string name="addButton">Add Food</string>
 
