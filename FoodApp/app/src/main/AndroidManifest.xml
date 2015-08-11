@@ -64,6 +64,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".DisclaimerActivity"
+            android:label="@string/activity_disclaimer" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.MainActivity" />
+        </activity>
 
         <provider
             android:name=".data.FoodProvider"
@@ -93,6 +100,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.InputMenuActivity" />
         </activity>
+
     </application>
 
 </manifest>
