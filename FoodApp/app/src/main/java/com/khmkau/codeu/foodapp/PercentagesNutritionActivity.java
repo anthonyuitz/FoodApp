@@ -143,12 +143,12 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
     private ArrayList<String> getXAxisValues() {
         ArrayList<String> xAxis = new ArrayList<>();
 
-        // xAxis.add("Vitamin C");
-        // xAxis.add("Vitamin A");
-        // xAxis.add("Iron");
-        // xAxis.add("Calcium");
+        xAxis.add("Vitamin C");
+        xAxis.add("Vitamin A");
+        xAxis.add("Iron");
+        xAxis.add("Calcium");
         xAxis.add("Protein");
-        // xAxis.add("Dietary Fiber");
+        xAxis.add("Dietary Fiber");
         xAxis.add("Total Carbs");
         xAxis.add("Sodium");
         xAxis.add("Cholesterol");
