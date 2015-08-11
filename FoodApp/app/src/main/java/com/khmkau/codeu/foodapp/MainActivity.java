@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, PreferencesActivity.class));
+            startActivity(new Intent(this, Preferences.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -57,10 +57,15 @@ public class MainActivity extends ActionBarActivity {
 
     public void nutritionView(View view)
     {
-        Intent intent = new Intent(this, PercentagesConsumptionActivity.class);
+        Intent intent = new Intent(this, PercentagesNutritionActivity.class);
         startActivity(intent);
     }
 
+    public void disclaimerView(View view)
+    {
+        Intent intent = new Intent(this, DisclaimerActivity.class);
+        startActivity(intent);
+    }
 
 //    public void settingsView(View view)
 //    {
