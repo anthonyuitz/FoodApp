@@ -113,4 +113,29 @@
 
     <string name="addButton">Add Food</string>
 
+    <string name="quantity_error">Quantity must be a number</string>
+    <string name="purchased_by_error">Invalid Date Entered</string>
+    <string name="expires_by_error">Invalid Date Entered</string>
+    <string name="total_cost_error">Cost must be a dollar value</string>
+    <string name="calories_error">Calories must be a whole number</string>
+    <string name="total_fat_error">Total Fat must be a number</string>
+    <string name="saturated_fat_error">Saturated Fat must be a number</string>
+    <string name="trans_fat_error">Trans Fat must be a number</string>
+    <string name="cholesterol_error">Cholesterol must be a number</string>
+    <string name="sodium_error">Sodium must be a number</string>
+    <string name="total_carbs_error">Total Carbs must be a number</string>
+    <string name="sugar_error">Sugar must be a number</string>
+    <string name="protein_error">Protein must be a number</string>
+    <string name="consumed_by_error">Invalid Date Entered</string>
+    <string name="thrown_by_error">Invalid Date Entered</string>
+
+    <string-array name="food_groups">
+        <item>Dairy</item>
+        <item>Fruit</item>
+        <item>Grains</item>
+        <item>Liquid</item>
+        <item>Vegetable</item>
+        <item>Protein</item>
+    </string-array>
+
 </resources>

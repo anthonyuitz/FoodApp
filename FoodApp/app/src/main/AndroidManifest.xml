@@ -78,7 +78,7 @@
 
         <activity
             android:name=".InputMenuActivity"
-            android:label="@string/title_activity_input_menu"
+            android:label="@string/addFood"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -86,7 +86,7 @@
         </activity>
         <activity
             android:name=".ManualInputActivity"
-            android:label="@string/title_activity_manual_input"
+            android:label="@string/manual_input"
             android:parentActivityName=".InputMenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -94,7 +94,7 @@
         </activity>
         <activity
             android:name=".ExistingInputActivity"
-            android:label="@string/title_activity_existing_input"
+            android:label="@string/existing_input"
             android:parentActivityName=".InputMenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

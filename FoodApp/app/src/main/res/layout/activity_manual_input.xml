@@ -71,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:singleLine="true"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:inputType="number">
             </EditText>
 
             <Spinner
@@ -114,7 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:focusable="false">
             </EditText>
         </TableRow>
         <TableRow
@@ -131,7 +133,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:focusable="false">
             </EditText>
         </TableRow>
         <TableRow
@@ -148,7 +151,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:focusable="false">
             </EditText>
         </TableRow>
 
@@ -160,13 +164,12 @@
                 android:text="@string/foodgroup_label" >
             </TextView>
 
-            <EditText
+            <Spinner
                 android:id="@+id/editFoodGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:singleLine="true" >
-            </EditText>
+                android:gravity="start" >
+            </Spinner>
         </TableRow>
         <TableRow>
 
@@ -181,7 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="numberDecimal">
             </EditText>
         </TableRow>
         <TableRow>
@@ -197,7 +201,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true">
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -213,7 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
 
@@ -230,7 +236,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -246,7 +253,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
 
@@ -263,7 +271,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -279,7 +288,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -295,7 +305,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true">
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -311,7 +322,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
         <TableRow>
@@ -327,7 +339,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="number">
             </EditText>
         </TableRow>
 
