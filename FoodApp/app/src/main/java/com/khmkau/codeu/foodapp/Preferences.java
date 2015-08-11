@@ -60,7 +60,16 @@ public class Preferences extends PreferenceActivity implements
         }
         if (p instanceof EditTextPreference) {
             EditTextPreference editTextPref = (EditTextPreference) p;
-            p.setSummary(editTextPref.getText());
+
+            if(p.getKey().equals("age"))
+            {
+                p.setSummary(editTextPref.getText() + " years old");
+            }
+
+            else if(p.getKey().equals("weight"))
+            {
+                p.setSummary(editTextPref.getText() + " pounds");
+            }
         }
     }
 

@@ -61,6 +61,12 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void wasteView(View view)
+    {
+        Intent intent = new Intent(this, WasteActivity.class);
+        startActivity(intent);
+    }
+
     public void disclaimerView(View view)
     {
         Intent intent = new Intent(this, DisclaimerActivity.class);
