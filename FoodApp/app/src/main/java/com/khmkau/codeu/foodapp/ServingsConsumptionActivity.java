@@ -12,6 +12,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -105,6 +106,13 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         Intent intent = new Intent(this, PercentagesConsumptionActivity.class);
         startActivity(intent);
         Log.i("Consumption Activity", "Switching activities");
+    }
+
+    public void saveGraph(View view)
+    {
+        chart.saveToGallery("consumptionByServing.jpg", 85);
+        Toast.makeText(getApplicationContext(), "Graph saved to gallery",
+                Toast.LENGTH_SHORT).show();
     }
 
     // TODO: implement using calls to the database

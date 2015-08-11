@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -88,6 +89,13 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         Intent intent = new Intent(this, ListNutritionActivity.class);
         startActivity(intent);
         Log.i("Consumption Activity", "Switching activities");
+    }
+
+    public void saveGraph(View view)
+    {
+        chart.saveToGallery("nutritionByPercentage.jpg", 85);
+        Toast.makeText(getApplicationContext(), "Graph saved to gallery",
+                Toast.LENGTH_SHORT).show();
     }
 
     private float[] recommendedValues;
