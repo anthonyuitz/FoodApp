@@ -53,7 +53,7 @@ public class FoodAdapter extends CursorAdapter {
         viewHolder.foodNameView.setText(foodName);
 
         // Read number and unit of servings for food
-        String servings = cursor.getString(FoodFragment.COL_QUANTITY);
+        String servings = cursor.getString(FoodFragment.COL_QUANTITY) + " " + cursor.getString(FoodFragment.COL_SERVING_UNIT);
         // Find TextView and set servings on it
         viewHolder.servingsView.setText(servings);
 

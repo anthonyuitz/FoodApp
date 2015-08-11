@@ -47,7 +47,8 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
             FoodContract.InfoEntry.COLUMN_FOOD_NAME,
             FoodContract.CurrentEntry.COLUMN_QUANTITY,
             FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE,
-            FoodContract.InfoEntry.COLUMN_FOOD_GROUP
+            FoodContract.InfoEntry.COLUMN_FOOD_GROUP,
+            FoodContract.InfoEntry.COLUMN_SERVING_UNIT
     };
 
     // These indices are tied to FOOD_COLUMNS. If FOOD_COLUMNS changes, these must change.
@@ -56,6 +57,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     static final int COL_QUANTITY = 2;
     static final int COL_EXPIRATION_DATE = 3;
     static final int COL_FOOD_GROUP = 4;
+    static final int COL_SERVING_UNIT = 5;
 
     /**
      * A callback interface that all activities containing this fragment must
