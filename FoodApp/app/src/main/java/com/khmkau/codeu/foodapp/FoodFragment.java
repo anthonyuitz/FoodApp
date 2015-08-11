@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -39,6 +38,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     private FoodAdapter foodAdapter;
     private SwipeMenuListView listView;
     private static final int FOOD_LOADER = 0;
+    private View rootView;
 
     // We're showing only a small subset of the stored data.
     // Specify the columns we need.
@@ -119,10 +119,49 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
 
 //////////////////////
+        ContentValues infoValues3 = new ContentValues();
+        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Water");
+        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Liquid");
+        infoValues3.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "Cups");
+        infoValues3.put(FoodContract.InfoEntry.COLUMN_CALORIES, 1);
 
+        Uri insertedUri3 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues3);
+
+        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+        long infoRowId3 = ContentUris.parseId(insertedUri3);
+
+        ContentValues currentValues3 = new ContentValues();
+        currentValues3.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId3);
+        currentValues3.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+        currentValues3.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+        currentValues3.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 5);
+
+        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues3);
+
+//////////////////////
+        ContentValues infoValues4 = new ContentValues();
+        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Cheese");
+        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Dairy");
+        infoValues4.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "wedges");
+        infoValues4.put(FoodContract.InfoEntry.COLUMN_CALORIES, 22);
+
+        Uri insertedUri4 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues4);
+
+        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+        long infoRowId4 = ContentUris.parseId(insertedUri4);
+
+        ContentValues currentValues4 = new ContentValues();
+        currentValues4.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId4);
+        currentValues4.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+        currentValues4.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+        currentValues4.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 7);
+
+        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues4);
+
+//////////////////////
         // TODO layout uses fridge or main? This is what sunny uses:
         // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        View rootView = inflater.inflate(R.layout.fragment_fridge, container, false);
+        rootView = inflater.inflate(R.layout.fragment_fridge, container, false);
 
         // The FoodAdapter will take data from a source and
         // use it to populate the ListView it's attached to.
@@ -238,10 +277,8 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 int index = parentView.getSelectedItemPosition();
-                // TODO: change foodAdapter with appropriate SORT QUERY and notify that the adapter has changed!
-                // listView.setAdapter(foodAdapter);
-
-                Toast.makeText(getActivity(), "You have selected item " + index, Toast.LENGTH_SHORT).show();
+                // updates the loader with appropriated sort order query
+                resetLoader();
             }
 
             @Override
@@ -250,6 +287,10 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         });
 
         return rootView;
+    }
+
+    public void resetLoader() {
+        getLoaderManager().restartLoader(FOOD_LOADER, null, this);
     }
 
     private int dp2px(int dp) {
@@ -265,28 +306,10 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // This is called when a new Loader needs to be created.  This
-        // fragment only uses one loader, so we don't care about checking the id.
-
-        // To only show current and future dates, filter the query to return weather only for
-        // dates after or including today.
-
-//        TODO: delete later
-//        String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
-//
-//        String locationSetting = Utility.getPreferredLocation(getActivity());
-//        Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
-//                locationSetting, System.currentTimeMillis());
-//
-//        return new CursorLoader(getActivity(),
-//                weatherForLocationUri,
-//                FORECAST_COLUMNS, // FOOD_COLUMNS
-//                null,
-//                null,
-//                sortOrder);
-
-        ///////////////////// food implementation? /////////////////////////////////////
-        // String sortOrder = FoodContract.InfoEntry.COLUMN_FOOD_NAME + " ASC";
+        // String sortOrder = FoodContract.InfoEntry.COLUMN_FOOD_NAME + " ASC"; // initially sort by
+        // String sortOrder = FoodContract.CurrentEntry.COLUMN_QUANTITY + " DESC";
+        Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
+        String sortOrder = Utility.getSortOrderByName(spinner.getSelectedItem().toString()) + " ASC";
 
         Uri currentFoodUri = FoodContract.CurrentEntry.CONTENT_URI;
 
@@ -295,8 +318,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
                 FOOD_COLUMNS,
                 null,
                 null,
-                null); //sortOrder
-
+                sortOrder); //sortOrder or null if order does not matter
     }
 
     @Override
@@ -313,5 +335,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
         foodAdapter.swapCursor(null);
     }
+
+
 
 }

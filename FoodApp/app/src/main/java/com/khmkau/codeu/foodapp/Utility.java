@@ -1,5 +1,7 @@
 package com.khmkau.codeu.foodapp;
 
+import com.khmkau.codeu.foodapp.data.FoodContract;
+
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -32,6 +34,18 @@ public class Utility {
             return R.drawable.protein;
         } else { // Vegetable
             return R.drawable.veg;
+        }
+    }
+
+    public static String getSortOrderByName(String name) {
+        if (name.equals("Name")) {
+             return FoodContract.InfoEntry.COLUMN_FOOD_NAME;
+        } else if (name.equals("Price")) {
+            return FoodContract.CurrentEntry.COLUMN_VALUE;
+        } else if (name.equals("Expiration Date")) {
+            return FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE;
+        } else { // sort order is purchase date
+            return FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED;
         }
     }
 
