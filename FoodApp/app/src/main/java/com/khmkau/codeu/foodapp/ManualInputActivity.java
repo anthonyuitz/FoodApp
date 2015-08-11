@@ -252,8 +252,10 @@ public class ManualInputActivity extends AppCompatActivity implements AdapterVie
             expiredByTextView.setHint(R.string.expires_by_error);
             expiredByTextView.setHintTextColor(Color.RED);
         }
-        if(totalCostText.charAt(0) == '$') {
-            totalCostText = totalCostText.substring(1);
+        if(!totalCarbsText.equals("")) {
+            if (totalCostText.charAt(0) == '$') {
+                totalCostText = totalCostText.substring(1);
+            }
         }
         if(!Utility.isDouble(totalCostText) || totalCostText.equals("")) {
             isValid = false;
@@ -367,7 +369,7 @@ public class ManualInputActivity extends AppCompatActivity implements AdapterVie
             } else if (tableText.equals("Thrown")) {
                 EditText thrownByTextView = (EditText) findViewById(R.id.editThrownBy);
                 thrownByText = thrownByTextView.getText().toString();
-                int[] thrownDates = Utility.validateDate(consumedByText);
+                int[] thrownDates = Utility.validateDate(thrownByText);
                 if (thrownDates[0] == -1) {
                     thrownByTextView.setHintTextColor(Color.RED);
                     thrownByTextView.setHint(R.string.thrown_by_error);
