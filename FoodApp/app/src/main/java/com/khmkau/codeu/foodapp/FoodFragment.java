@@ -169,31 +169,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
         // Get a reference to the ListView, and attach this adapter to it.
         listView = (SwipeMenuListView) rootView.findViewById(R.id.ListViewFood);
-
-        // HARD CODED ARRAY EXAMPLE
-//        String[] foodArray = {
-//                "Apple",
-//                "Banana",
-//                "Celery",
-//                "Water",
-//                "Omgthisisasuperlongname"
-//        };
-//
-//        List<String> foodItems = new ArrayList<String>(Arrays.asList(foodArray));
-//
-//
-//         // Binds the data we want to show to the layout of the list items
-//         // and a text view (how the text is formatted in a single element
-//         // of the list). Params: context (global info about the app), ID of
-//         // list item layout, ID of text view to populate, list of food data
-//        foodAdapter = new ArrayAdapter<String>(
-//                getActivity(),
-//                R.layout.list_item_food, // the ID of the overall layout
-//                R.id.list_item_food_textview, // ID of text view to populate
-//                foodItems);
-//
-//         SwipeMenuListView listView = (SwipeMenuListView)rootView.findViewById(R.id.ListViewFood);
-
         listView.setAdapter(foodAdapter);
 
         // creates a new instance of a SwipeMenuCreator and initializes swipe boxes
@@ -224,22 +199,20 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+                int foodID = cursor.getInt(cursor.getColumnIndex(FoodContract.CurrentEntry._ID));
+
                 switch (index) {
                     case 0: // eat
-                        // TODO: implement dialog fragment and update database accordingly
-                        // Toast.makeText(getActivity(), "OPEN UP OPTION DIALOG for eat", Toast.LENGTH_SHORT).show();
-
                         DialogFragment eatFragment = new EatDialogFragment();
-                        eatFragment.show(getFragmentManager(), "eat");
-
-
+                        eatFragment.show(getFragmentManager(), "t");
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("foodIDKey", foodID);
+                        eatFragment.setArguments(bundle);
                         break;
                     case 1: // trash food
-                        // TODO update database to remove item amount
-
                         DialogFragment trashFragment = new TrashDialogFragment();
-                        trashFragment.show(getFragmentManager(), "t");
-
+                        trashFragment.show(getFragmentManager(), "trash");
 //                        foodAdapter.remove(item);
 //                        foodAdapter.notifyDataSetChanged();
                         break;

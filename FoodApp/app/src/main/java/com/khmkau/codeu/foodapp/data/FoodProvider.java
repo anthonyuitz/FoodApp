@@ -60,6 +60,7 @@ public class FoodProvider extends ContentProvider {
                         "." + FoodContract.InfoEntry._ID);
     }
 
+
     //current.expiration_date = ?
     private static final String sCurrentExpirationSelection =
             FoodContract.CurrentEntry.TABLE_NAME +
@@ -105,6 +106,8 @@ public class FoodProvider extends ContentProvider {
             FoodContract.ThrownEntry.TABLE_NAME +
                     "." + FoodContract.ThrownEntry.COLUMN_DATE_THROWN + " >= ? AND " +
                     FoodContract.ThrownEntry.COLUMN_DATE_THROWN + " <= ? ";
+
+
 
     // TODO delete if necessary... Melissa's sandbox methond
     private Cursor getCurrentWithInfo(Uri uri, String[] projection, String sortOrder) {
