@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--<EditTextPreference android:title="Age"-->
+        <!--android:key="age"-->
+        <!--android:inputType="number"></EditTextPreference>-->
+
+    <!--&lt;!&ndash;<ListPreference     android:title="Gender"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:key="gender"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:defaultValue="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:entries="@array/listArray"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:entryValues="@array/listValues" />&ndash;&gt;-->
+
+    <!--<EditTextPreference android:title="Weight"-->
+        <!--android:key="weight"-->
+        <!--android:inputType="number"-->
+        <!--android:summary="Specify your weight in pounds"></EditTextPreference>-->
+
     <EditTextPreference android:title="Age"
         android:key="age"
         android:inputType="number"></EditTextPreference>
-
-    <!--<ListPreference     android:title="Gender"-->
-        <!--android:key="gender"-->
-        <!--android:defaultValue="1"-->
-        <!--android:entries="@array/listArray"-->
-        <!--android:entryValues="@array/listValues" />-->
 
     <EditTextPreference android:title="Weight"
         android:key="weight"
         android:inputType="number"
         android:summary="Specify your weight in pounds"></EditTextPreference>
+
+    <ListPreference     android:title="Gender"
+        android:key="downloadType"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
 
 </PreferenceScreen>

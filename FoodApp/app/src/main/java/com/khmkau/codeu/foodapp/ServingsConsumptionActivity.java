@@ -33,9 +33,10 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
         // Get Settings
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         age = Integer.parseInt(SP.getString("age", "18"));
-        // boolean gender = SP.getBoolean("gender", true);
-        weight = Integer.parseInt(SP.getString("weight","120"));
-        Log.i("Settings", age + " " + " " + weight);
+        weight = Integer.parseInt(SP.getString("weight", "150"));
+        String downloadType = SP.getString("downloadType","1");
+        gender = Integer.parseInt(downloadType);
+        Log.i("ServingsSettings", age + " " + weight + " " + gender);
 
         spinner = (Spinner)findViewById(R.id.spinner);
 
@@ -97,6 +98,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
     private int age;
     private int weight;
+    private int gender;
 
     public void changeView(View view)
     {
@@ -159,7 +161,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
         // TODO: get values from the settings
 
-        boolean male = true; // false if female
+        // boolean male = true; // false if female
 
         float waterRec = (0.5f * weight)/8f;
 
@@ -169,7 +171,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
             return new float[]{2.5f, 1f, 4f, 1f, 1.5f, waterRec};
 
         // male
-        else if(male == true) {
+        else if(gender == 1) {
             if(age <=8)
                 return new float[]{4.5f, 1.5f, 4f, 1.5f, 2f, waterRec};
             else if(age <= 11)

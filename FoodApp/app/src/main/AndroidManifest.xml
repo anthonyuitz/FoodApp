@@ -58,8 +58,15 @@
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
         </activity>
         <activity
-            android:name=".PreferencesActivity"
+            android:name=".Preferences"
             android:label="@string/title_activity_settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DisclaimerActivity"
+            android:label="@string/activity_disclaimer" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.MainActivity" />
@@ -93,6 +100,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.InputMenuActivity" />
         </activity>
+
     </application>
 
 </manifest>

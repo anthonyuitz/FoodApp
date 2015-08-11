@@ -9,6 +9,8 @@
     <string name="nutrition_detail_per">Nutrition Data - Percentages</string>
 
     <string name="description">Data to View: </string>
+    <string name="disclaimer">*Disclaimer</string>
+    <string name="activity_disclaimer">Disclaimer</string>
     <string name="percentages_view">View Percentages</string>
     <string name="servings_view">View Servings</string>
     <string name="list_view">View List</string>
@@ -21,6 +23,8 @@
     <string name="percentage">Percentage</string>
     <string name="servings">Servings</string>
     <string name="food_group">Food Group</string>
+    <string name="food_groups">Food Groups</string>
+    <string name="nutritional_categories">Nutritional Categories</string>
 
     <string-array name="view_options">
         <item>Day</item>
