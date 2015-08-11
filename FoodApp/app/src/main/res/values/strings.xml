@@ -87,10 +87,10 @@
     <string name="add_to_label">Adding to:</string>
     <string name="food_name_label">Name*:</string>
     <string name="quantity_label">Quantity*:</string>
-    <string name="purchased_by_label">Bought:</string>
-    <string name="expires_by_label">Expires:</string>
+    <string name="purchased_by_label">Bought*:</string>
+    <string name="expires_by_label">Expires*:</string>
     <string name="foodgroup_label">Food Group*:</string>
-    <string name="total_cost_label">Total Cost:</string>
+    <string name="total_cost_label">Total Cost*:</string>
     <string name="calories_label">Calories*:</string>
     <string name="total_fat_label">Total Fat:</string>
     <string name="saturated_fat_label">Saturated Fat:</string>
@@ -100,8 +100,8 @@
     <string name="total_carbs_label">Total Carbs:</string>
     <string name="sugar_label">Sugar:</string>
     <string name="protein_label">Protein:</string>
-    <string name="consumed_by_label">Consumed:</string>
-    <string name="thrown_by_label">Thrown:</string>
+    <string name="consumed_by_label">Consumed*:</string>
+    <string name="thrown_by_label">Thrown*:</string>
 
     <string-array name="table_array">
         <item>Current</item>
@@ -116,5 +116,30 @@
     </string-array>
 
     <string name="addButton">Add Food</string>
+
+    <string name="quantity_error">Required Field</string>
+    <string name="purchased_by_error">Invalid Date Entered</string>
+    <string name="expires_by_error">Invalid Date Entered</string>
+    <string name="total_cost_error">Cost must be a dollar value</string>
+    <string name="calories_error">Required Field</string>
+    <string name="total_fat_error">Total Fat must be a number</string>
+    <string name="saturated_fat_error">Saturated Fat must be a number</string>
+    <string name="trans_fat_error">Trans Fat must be a number</string>
+    <string name="cholesterol_error">Cholesterol must be a number</string>
+    <string name="sodium_error">Sodium must be a number</string>
+    <string name="total_carbs_error">Total Carbs must be a number</string>
+    <string name="sugar_error">Sugar must be a number</string>
+    <string name="protein_error">Protein must be a number</string>
+    <string name="consumed_by_error">Invalid Date Entered</string>
+    <string name="thrown_by_error">Invalid Date Entered</string>
+
+    <string-array name="food_groups">
+        <item>Dairy</item>
+        <item>Fruit</item>
+        <item>Grains</item>
+        <item>Liquid</item>
+        <item>Vegetable</item>
+        <item>Protein</item>
+    </string-array>
 
 </resources>

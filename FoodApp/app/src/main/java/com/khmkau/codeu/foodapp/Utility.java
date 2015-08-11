@@ -21,6 +21,47 @@ public class Utility {
         return DateFormat.getDateInstance().format(date);
     }
 
+    public static boolean isNumeric(String str)
+    {
+        if(str.equals(""))
+            return true;
+        return str.matches("^-?\\d+$"); //match a number with optional '-' and no decimal.
+    }
+
+    public static boolean isDouble(String str)
+    {
+        return str.matches("-?\\d+(\\.\\d+)?"); //match a number with optional '-' and no decimal.
+    }
+
+    public static int[] validateDate(String str) {
+        String[] dateValues = str.split("/");
+        int[] dates = {-1, -1, -1};
+
+        if(dateValues.length != 3) {
+            return dates;
+        }
+        else {
+            int month = -1;
+            int day = -1;
+            int year = -1;
+            if(isNumeric(dateValues[0])){
+                month = Integer.parseInt(dateValues[0]) - 1;
+            }
+            if(isNumeric(dateValues[1])){
+                day = Integer.parseInt(dateValues[1]);
+            }
+            if(isNumeric(dateValues[2])){
+                year = Integer.parseInt(dateValues[2]) - 1900;
+            }
+            if(month >= 0 && month <= 11 && day >= 1 && day <= 31 && year != -1) {
+                dates[0] = month;
+                dates[1] = day;
+                dates[2] = year;
+            }
+            return dates;
+        }
+    }
+
     public static int getImgResourceForFoodGroup(String foodGroup) {
         if (foodGroup.equalsIgnoreCase("Dairy")) {
             return R.drawable.dairy;
