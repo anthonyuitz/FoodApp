@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="2"
-    android:paddingBottom="200dp"
-    android:paddingLeft="50dp"
     android:paddingTop="50dp"
-    android:paddingRight="50dp">
+    android:paddingBottom="50dp"
+    android:paddingRight="150dp"
+    android:paddingLeft="150dp">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -27,7 +27,9 @@
             android:layout_weight=".5"
             android:onClick="manualView"
             android:text="@string/manual_input"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -38,8 +40,9 @@
             android:layout_weight=".5"
             android:onClick="existingView"
             android:text="@string/existing_input"
-            android:layout_marginLeft="10dp"/>
-
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 
@@ -61,8 +64,10 @@
             android:layout_weight=".5"
             android:onClick="featureNotImplemented"
             android:text="@string/barcode_input"
-            android:layout_marginRight="10dp"
-            android:paddingRight="20dp"/>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"/>
+
 
         <Button
             android:layout_width="fill_parent"
@@ -73,12 +78,15 @@
             android:layout_weight=".5"
             android:onClick="featureNotImplemented"
             android:text="@string/receipt_input"
-            android:layout_marginLeft="10dp"
-            android:paddingLeft="20dp"/>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"/>
 
 
     </LinearLayout>
 
 
 </LinearLayout>
+
+
 

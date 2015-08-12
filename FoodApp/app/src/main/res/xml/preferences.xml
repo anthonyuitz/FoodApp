@@ -18,11 +18,13 @@
 
     <EditTextPreference android:title="Age"
         android:key="age"
+        android:defaultValue="18"
         android:inputType="number"></EditTextPreference>
 
     <EditTextPreference android:title="Weight"
         android:key="weight"
         android:inputType="number"
+        android:defaultValue="165"
         android:summary="Specify your weight in pounds"></EditTextPreference>
 
     <ListPreference     android:title="Gender"
