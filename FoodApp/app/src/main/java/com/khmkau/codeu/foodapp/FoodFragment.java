@@ -4,8 +4,6 @@ package com.khmkau.codeu.foodapp;
  * Created by Melissa on 7/26/2015.
  */
 
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -78,87 +76,87 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ContentValues infoValues = new ContentValues();
-        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
-
-        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
-
-        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-        long infoRowId = ContentUris.parseId(insertedUri);
-
-        ContentValues currentValues = new ContentValues();
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
-
-        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
-
-//////////////////////
-
-        ContentValues infoValues2 = new ContentValues();
-        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Pork");
-        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Protein");
-        infoValues2.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "lbs");
-        infoValues2.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
-
-        Uri insertedUri2 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues2);
-
-        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-        long infoRowId2 = ContentUris.parseId(insertedUri2);
-
-        ContentValues currentValues2 = new ContentValues();
-        currentValues2.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId2);
-        currentValues2.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-        currentValues2.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-        currentValues2.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 11);
-
-        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
-
-//////////////////////
-        ContentValues infoValues3 = new ContentValues();
-        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Water");
-        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Liquid");
-        infoValues3.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "Cups");
-        infoValues3.put(FoodContract.InfoEntry.COLUMN_CALORIES, 1);
-
-        Uri insertedUri3 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues3);
-
-        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-        long infoRowId3 = ContentUris.parseId(insertedUri3);
-
-        ContentValues currentValues3 = new ContentValues();
-        currentValues3.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId3);
-        currentValues3.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-        currentValues3.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-        currentValues3.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 5);
-
-        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues3);
-
-//////////////////////
-        ContentValues infoValues4 = new ContentValues();
-        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Cheese");
-        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Dairy");
-        infoValues4.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "wedges");
-        infoValues4.put(FoodContract.InfoEntry.COLUMN_CALORIES, 22);
-
-        Uri insertedUri4 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues4);
-
-        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-        long infoRowId4 = ContentUris.parseId(insertedUri4);
-
-        ContentValues currentValues4 = new ContentValues();
-        currentValues4.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId4);
-        currentValues4.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-        currentValues4.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-        currentValues4.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 7);
-
-        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues4);
-
-//////////////////////
+//        ContentValues infoValues = new ContentValues();
+//        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
+//        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
+//        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
+//        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+//
+//        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId = ContentUris.parseId(insertedUri);
+//
+//        ContentValues currentValues = new ContentValues();
+//        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
+//        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+//        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+//        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
+//
+////////////////////////
+//
+//        ContentValues infoValues2 = new ContentValues();
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Pork");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Protein");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "lbs");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+//
+//        Uri insertedUri2 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues2);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId2 = ContentUris.parseId(insertedUri2);
+//
+//        ContentValues currentValues2 = new ContentValues();
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId2);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 11);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
+//
+////////////////////////
+//        ContentValues infoValues3 = new ContentValues();
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Water");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Liquid");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "Cups");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_CALORIES, 1);
+//
+//        Uri insertedUri3 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues3);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId3 = ContentUris.parseId(insertedUri3);
+//
+//        ContentValues currentValues3 = new ContentValues();
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId3);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 5);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues3);
+//
+////////////////////////
+//        ContentValues infoValues4 = new ContentValues();
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Cheese");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Dairy");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "wedges");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_CALORIES, 22);
+//
+//        Uri insertedUri4 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues4);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId4 = ContentUris.parseId(insertedUri4);
+//
+//        ContentValues currentValues4 = new ContentValues();
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId4);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 7);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues4);
+//
+////////////////////////
         // TODO layout uses fridge or main? This is what sunny uses:
         // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         rootView = inflater.inflate(R.layout.fragment_fridge, container, false);
