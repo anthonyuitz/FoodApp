@@ -72,7 +72,7 @@
             android:textColor="#000000"
             android:id="@+id/receiptButton"
             android:layout_weight=".5"
-            android:onClick="featureNotImplemented"
+            android:onClick="receiptView"
             android:text="@string/receipt_input"
             android:layout_marginLeft="10dp"
             android:paddingLeft="20dp"/>

@@ -43,6 +43,11 @@ public class InputMenuActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
+    public void receiptView(View view) {
+        Intent intent = new Intent(this, ReceiptInputActivity.class);
+        startActivity(intent);
+    }
+
     public void manualView(View view)
     {
         Intent intent = new Intent(this, ManualInputActivity.class);
