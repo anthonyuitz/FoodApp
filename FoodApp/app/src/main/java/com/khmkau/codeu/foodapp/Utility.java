@@ -1,5 +1,8 @@
 package com.khmkau.codeu.foodapp;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
+
 import com.khmkau.codeu.foodapp.data.FoodContract;
 
 import java.text.DateFormat;
@@ -15,6 +18,14 @@ public class Utility {
 //        return prefs.getString(context.getString(R.string.pref_location_key),
 //                context.getString(R.string.pref_location_default));
 //    }
+
+    public static String[] randomfoods = {"Apple", "Bagel", "Banana", "Beer", "Water", "Juice", "Spaghetti",
+                            "Carrot", "Coffee", "Cookie", "Rice", "Bread", "Corn", "Chicken",
+                            "Egg", "Steak", "Ham", "Oatmeal", "Shrimp", "Butter"};
+
+    public static String[] foodGroups = {"Dairy", "Fruit", "Grains", "Liquid", "Vegetable", "Protein"};
+
+    public static String[] servingUnits = {"g", "mg", "large", "medium", "small", "lbs", "cups"};
 
     public static String formatDate(long dateInMilliseconds) {
         Date date = new Date(dateInMilliseconds);
@@ -88,6 +99,55 @@ public class Utility {
         } else { // sort order is purchase date
             return FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED;
         }
+    }
+
+    public static ContentValues generateTableValues(String tablename) {
+        ContentValues tableValues = new ContentValues();
+        Date date1 = new Date(115, (int)(Math.random()*4+7), (int)(Math.random()*28+1));
+        Date date2 = new Date(115, (int)(Math.random()*4+7), (int)(Math.random()*28+1));
+        Date date3 = new Date(115, (int)(Math.random()*4+7), (int)(Math.random()*28+1));
+        if(tablename.equals("Current")) {
+            tableValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, (int)(Math.random()*25+1));
+            tableValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, FoodContract.normalizeDate(date1.getTime()));
+            tableValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, FoodContract.normalizeDate(date2.getTime()));
+            tableValues.put(FoodContract.CurrentEntry.COLUMN_VALUE, (int)(Math.random()*1000+500));
+        }
+        else if(tablename.equals("Consumed")) {
+            tableValues.put(FoodContract.ConsumedEntry.COLUMN_QUANTITY, (int)(Math.random()*25+1));
+            tableValues.put(FoodContract.ConsumedEntry.COLUMN_DATE_PURCHASED, FoodContract.normalizeDate(date1.getTime()));
+            tableValues.put(FoodContract.ConsumedEntry.COLUMN_EXPIRATION_DATE, FoodContract.normalizeDate(date2.getTime()));
+            tableValues.put(FoodContract.ConsumedEntry.COLUMN_VALUE, (int)(Math.random()*1000+500));
+            tableValues.put(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED, FoodContract.normalizeDate(date3.getTime()));
+        }
+        else {
+            tableValues.put(FoodContract.ThrownEntry.COLUMN_QUANTITY, (int)(Math.random()*25+1));
+            tableValues.put(FoodContract.ThrownEntry.COLUMN_DATE_PURCHASED, FoodContract.normalizeDate(date1.getTime()));
+            tableValues.put(FoodContract.ThrownEntry.COLUMN_EXPIRATION_DATE, FoodContract.normalizeDate(date2.getTime()));
+            tableValues.put(FoodContract.ThrownEntry.COLUMN_VALUE, (int)(Math.random()*1000+500));
+            tableValues.put(FoodContract.ThrownEntry.COLUMN_DATE_THROWN, FoodContract.normalizeDate(date3.getTime()));
+        }
+        return tableValues;
+    }
+
+    public static ContentValues generateFoodValues() {
+        ContentValues foodValues = new ContentValues();
+        int nameIndex = (int)(Math.random()*randomfoods.length);
+        int groupIndex = (int)(Math.random()*foodGroups.length);
+        int servingIndex = (int)(Math.random()*servingUnits.length);
+        foodValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, randomfoods[nameIndex]);
+        foodValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, foodGroups[groupIndex]);
+        foodValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, servingUnits[servingIndex]);
+        foodValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, (int)(310*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_FAT, (int)(12*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_TOTAL_CARBOHYDRATE, (int)(36*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_CHOLESTEROL, (int)(20*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_SODIUM, (int)(290*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_TRANS_FAT, (int)(2*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_SATURATED_FAT, (int)(4*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_PROTEIN, (int)(17*(Math.random()+1)));
+        foodValues.put(FoodContract.InfoEntry.COLUMN_SUGAR, (int)(6*(Math.random()+1)));
+
+        return foodValues;
     }
 
 }

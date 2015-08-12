@@ -150,5 +150,6 @@
     </string-array>
 
     <string name="existing_prompt">Add foods you recently added, ate, or threw away</string>
+    <string name="title_activity_receipt_input">ReceiptInputActivity</string>
 
 </resources>

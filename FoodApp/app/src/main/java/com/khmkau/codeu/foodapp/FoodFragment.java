@@ -4,6 +4,8 @@ package com.khmkau.codeu.foodapp;
  * Created by Melissa on 7/26/2015.
  */
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
