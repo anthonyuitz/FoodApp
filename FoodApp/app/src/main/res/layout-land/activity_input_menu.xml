@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="2"
-    android:padding="50dp">
+    android:paddingTop="50dp"
+    android:paddingBottom="50dp"
+    android:paddingRight="150dp"
+    android:paddingLeft="150dp">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -18,39 +21,25 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shopping232"
+            android:background="@drawable/pencil125"
             android:textColor="#000000"
             android:id="@+id/addFoodButton"
-            android:layout_weight=".33"
-            android:onClick="foodView"
-            android:text="Add Food"
+            android:layout_weight=".5"
+            android:onClick="manualView"
+            android:text="@string/manual_input"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fridge3"
+            android:background="@drawable/plus24"
             android:textColor="#000000"
-            android:id="@+id/seeFridgeButton"
-            android:layout_weight=".33"
-            android:onClick="fridgeView"
-            android:text="See Fridge"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-
-
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/knife15"
-            android:textColor="#000000"
-            android:id="@+id/seeConsumptionButton"
-            android:layout_weight=".33"
-            android:onClick="consumptionView"
-            android:text="Consumption"
+            android:id="@+id/addToExistingButton"
+            android:layout_weight=".5"
+            android:onClick="existingView"
+            android:text="@string/existing_input"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="10dp"/>
@@ -69,38 +58,26 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fruits1"
+            android:background="@drawable/product3"
             android:textColor="#000000"
-            android:id="@+id/seeNutritionButton"
-            android:layout_weight=".33"
-            android:onClick="nutritionView"
-            android:text="Nutrition"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"/>
-
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/garbage21"
-            android:textColor="#000000"
-            android:id="@+id/wasteButton"
-            android:layout_weight=".33"
-            android:onClick="wasteView"
-            android:text="Waste"
+            android:id="@+id/barcodeButton"
+            android:layout_weight=".5"
+            android:onClick="featureNotImplemented"
+            android:text="@string/barcode_input"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="25dp"/>
 
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/mark6"
+            android:background="@drawable/receipt9"
             android:textColor="#000000"
-            android:id="@+id/disclaimerButton"
-            android:layout_weight=".33"
-            android:onClick="disclaimerView"
-            android:text="*Disclaimer"
+            android:id="@+id/receiptButton"
+            android:layout_weight=".5"
+            android:onClick="featureNotImplemented"
+            android:text="@string/receipt_input"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="25dp"/>
@@ -110,5 +87,6 @@
 
 
 </LinearLayout>
+
 
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,24 +20,24 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fruit"
+            android:background="@drawable/shopping232"
             android:textColor="#000000"
             android:id="@+id/addFoodButton"
             android:layout_weight=".5"
             android:onClick="foodView"
             android:text="Add Food"
-            android:layout_marginRight="10dp"></Button>
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/veg"
+            android:background="@drawable/fridge3"
             android:textColor="#000000"
             android:id="@+id/seeFridgeButton"
             android:layout_weight=".5"
             android:onClick="fridgeView"
             android:text="See Fridge"
-            android:layout_marginLeft="10dp"></Button>
+            android:layout_marginLeft="10dp"/>
 
 
     </LinearLayout>
@@ -52,24 +54,24 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dairy"
+            android:background="@drawable/knife15"
             android:textColor="#000000"
             android:id="@+id/seeConsumptionButton"
             android:layout_weight=".5"
             android:onClick="consumptionView"
             android:text="Consumption"
-            android:layout_marginRight="10dp"></Button>
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/grains"
+            android:background="@drawable/fruits1"
             android:textColor="#000000"
             android:id="@+id/seeNutritionButton"
             android:layout_weight=".5"
             android:onClick="nutritionView"
             android:text="Nutrition"
-            android:layout_marginLeft="10dp"></Button>
+            android:layout_marginLeft="10dp"/>
 
 
     </LinearLayout>
@@ -86,24 +88,24 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/protein"
+            android:background="@drawable/garbage21"
             android:textColor="#000000"
             android:id="@+id/wasteButton"
             android:layout_weight=".5"
             android:onClick="wasteView"
             android:text="Waste"
-            android:layout_marginRight="10dp"></Button>
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/liquid"
+            android:background="@drawable/mark6"
             android:textColor="#000000"
             android:id="@+id/disclaimerButton"
             android:layout_weight=".5"
             android:onClick="disclaimerView"
             android:text="*Disclaimer"
-            android:layout_marginLeft="10dp"></Button>
+            android:layout_marginLeft="10dp"/>
 
 
     </LinearLayout>
