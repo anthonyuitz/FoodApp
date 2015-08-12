@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="30dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.khmkau.codeu.foodapp.ExistingInputActivity">
 
@@ -15,11 +15,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/existing_prompt"/>
+            android:text="@string/existing_prompt"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="30dp">
         <AutoCompleteTextView
             android:id="@+id/searchInput"
             android:layout_width="match_parent"
@@ -32,8 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:src="@drawable/eat"
-            android:background="#ff55b1ff"
+            android:src="@drawable/magnifying_glass"
             android:onClick="search" />
        </LinearLayout>
         <TableLayout
@@ -53,11 +54,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/add_to_label" >
             </TextView>
 
             <Spinner
                 android:id="@+id/tableSpinner"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right" >
@@ -68,6 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_gravity="center_vertical"
                 android:text="@string/quantity_label" >
             </TextView>
@@ -99,6 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/purchased_by_label" >
             </TextView>
 
@@ -106,6 +111,7 @@
                 android:id="@+id/editPurchasedBy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:gravity="start"
                 android:singleLine="true"
                 android:focusable="false">
@@ -117,6 +123,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/expires_by_label" >
             </TextView>
 
@@ -135,6 +142,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/consumed_by_label" >
             </TextView>
 
@@ -153,6 +161,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/thrown_by_label" >
             </TextView>
 
@@ -170,6 +179,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/total_cost_label" >
             </TextView>
 
@@ -185,6 +195,7 @@
         </TableLayout>
         <Button
             android:id="@+id/submitButton"
+            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
