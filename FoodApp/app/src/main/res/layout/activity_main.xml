@@ -26,7 +26,7 @@
             android:layout_weight=".5"
             android:onClick="foodView"
             android:text="Add Food"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -60,7 +60,7 @@
             android:layout_weight=".5"
             android:onClick="consumptionView"
             android:text="Consumption"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp" />
 
         <Button
             android:layout_width="fill_parent"

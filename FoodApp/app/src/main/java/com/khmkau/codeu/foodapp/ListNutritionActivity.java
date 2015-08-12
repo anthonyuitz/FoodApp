@@ -62,10 +62,14 @@ public class ListNutritionActivity extends ActionBarActivity {
     }
 
 
-    // TODO: implement this function (stub implementation)
     public float[] computeConsumedValues()
     {
-          return new float[] {1800, 68, 25, 310, 2600, 280, 25, 55, 1025, 20, 5675, 48};
+        if (selection.equals("Day"))
+            return new float[] {1800, 68, 25, 310, 2600, 280, 25, 55, 1025, 20, 5675, 48};
+        if (selection.equals("Week"))
+            return new float[] {9530, 502, 160, 2189, 17594, 2098, 160, 313, 9078, 147, 43567, 329};
+        else
+            return new float[] {1800*30, 68*30, 25*30, 310*30, 2600*30, 280*30, 25*30, 55*30, 1025*30, 20*30, 5675*30, 48*30};
     }
 
     public float[] computeRecommendedValues()
