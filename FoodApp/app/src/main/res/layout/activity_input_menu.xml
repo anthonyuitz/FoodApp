@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
-    android:paddingBottom="200dp"
+    android:weightSum="3"
+    android:paddingBottom="150dp"
     android:paddingLeft="50dp"
     android:paddingTop="50dp"
     android:paddingRight="50dp">
@@ -16,7 +16,8 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_weight="1"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:paddingBottom="5dp">
 
         <Button
             android:layout_width="fill_parent"
@@ -50,7 +51,7 @@
         android:weightSum="1"
         android:layout_weight="1"
 
-        android:layout_marginBottom="5dp">
+        >
 
         <Button
             android:layout_width="fill_parent"
