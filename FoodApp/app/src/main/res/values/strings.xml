@@ -112,7 +112,11 @@
     <string-array name="quantity_array">
         <item>g</item>
         <item>mg</item>
-        <item>temp</item>
+        <item>lg</item>
+        <item>med</item>
+        <item>sm</item>
+        <item>lbs</item>
+        <item>cups</item>
     </string-array>
 
     <string name="grams">g</string>
@@ -144,5 +148,7 @@
         <item>Vegetable</item>
         <item>Protein</item>
     </string-array>
+
+    <string name="existing_prompt">Add foods you recently added, ate, or threw away</string>
 
 </resources>
