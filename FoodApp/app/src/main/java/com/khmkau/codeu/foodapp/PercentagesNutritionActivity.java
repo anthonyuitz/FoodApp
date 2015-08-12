@@ -73,7 +73,6 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 selection = "Day";
-                Log.i("nothingSelected: ", "Value of Selection is: " + selection);
             }
 
         });
@@ -122,7 +121,6 @@ public class PercentagesNutritionActivity extends ActionBarActivity {
         // Consumed value
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
-        // TODO: compute percentages -> loop through the percentages to initialize valueSet1
 
         float[] consumedValues = computeConsumedValues();
         float[] recommendedValues = computeRecommendedValues();

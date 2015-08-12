@@ -46,7 +46,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
         weight = Integer.parseInt(SP.getString("weight", "150"));
         String downloadType = SP.getString("downloadType","1");
         gender = Integer.parseInt(downloadType);
-        Log.i("Settings", age + " " + weight + " " + downloadType);
 
         chart = (HorizontalBarChart) findViewById(R.id.hchart);
         spinner = (Spinner)findViewById(R.id.spinner);
@@ -93,7 +92,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 selection = "Day";
-                Log.i("nothingSelected: ", "Value of Selection is: " + selection);
             }
 
         });
@@ -126,7 +124,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
 
     public float[] computeRecommendedValues() {
 
-        // TODO: get values from the settings
         // boolean male = true; // false if female
 
         float waterRec = (0.5f * weight)/8f;
@@ -199,9 +196,8 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
             beg = today - msInDay;
         }
 
-        float[] consumedVals = new float[6];
         String[] categoryValues = {"Vegetable", "Fruit", "Grains", "Protein", "Dairy", "Liquid"};
-        for(int i = 0; i < consumedVals.length; i++) {
+        for(int i = 0; i < categoryValues.length; i++) {
 
             Uri consumedUri = FoodContract.ConsumedEntry.CONTENT_URI.
                     buildUpon().appendPath(Long.toString(beg)).
@@ -209,6 +205,7 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
                     appendPath(categoryValues[i]).build();
             String[] projection = {FoodContract.ConsumedEntry.COLUMN_QUANTITY}; // cols we want to extract
             Cursor cursor = getContentResolver().query(consumedUri, projection, null, null, null);
+            cursor.close();
 
         }
         // return consumedVals;
@@ -228,8 +225,6 @@ public class PercentagesConsumptionActivity extends ActionBarActivity {
 
         // Consumed values
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-
-        // TODO: compute percentages -> loop through the percentages to initialize valueSet1
 
         float[] consumedValues = computeConsumedValues();
 

@@ -109,7 +109,6 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
     {
         Intent intent = new Intent(this, PercentagesConsumptionActivity.class);
         startActivity(intent);
-        Log.i("Consumption Activity", "Switching activities");
     }
 
     public void saveGraph(View view)
@@ -141,9 +140,8 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
             beg = today - msInDay;
         }
 
-        float[] consumedVals = new float[6];
         String[] categoryValues = {"Vegetable", "Fruit", "Grains", "Protein", "Dairy", "Liquid"};
-        for(int i = 0; i < consumedVals.length; i++) {
+        for(int i = 0; i < categoryValues.length; i++) {
 
             Uri consumedUri = FoodContract.ConsumedEntry.CONTENT_URI.
                     buildUpon().appendPath(Long.toString(beg)).
@@ -151,6 +149,7 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
                     appendPath(categoryValues[i]).build();
             String[] projection = {FoodContract.ConsumedEntry.COLUMN_QUANTITY}; // cols we want to extract
             Cursor cursor = getContentResolver().query(consumedUri, projection, null, null, null);
+            cursor.close();
 
         }
         // return consumedVals;
@@ -208,8 +207,6 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
 
     // returns an array of the recommended amt of servings (vegetables, fruit, grain, protein, dairy, water)
     public float[] computeRecommendedValues() {
-
-        // TODO: get values from the settings
 
         // boolean male = true; // false if female
 
