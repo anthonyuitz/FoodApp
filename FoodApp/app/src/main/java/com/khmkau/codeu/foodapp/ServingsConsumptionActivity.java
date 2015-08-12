@@ -2,7 +2,9 @@ package com.khmkau.codeu.foodapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -19,8 +21,10 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.khmkau.codeu.foodapp.data.FoodContract;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ServingsConsumptionActivity extends ActionBarActivity {
 
@@ -115,10 +119,48 @@ public class ServingsConsumptionActivity extends ActionBarActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    // TODO: implement using calls to the database
     // stub implementation
-    public float[] computeConsumedValues() {
-        return new float[]{4.3f, 2.8f, 4f, 1f, 3.6f, 8f};
+    public float[] computeConsumedValues()
+    {
+
+
+        long today = (new Date()).getTime();
+        long msInDay = 86400000;
+        long beg;
+
+        if (selection.equals("Week"))
+        {
+            beg = today - 7*msInDay;
+        }
+        else if (selection.equals("Month"))
+        {
+            beg = today - 30*msInDay;
+        }
+        // default: day
+        else {
+            beg = today - msInDay;
+        }
+
+        float[] consumedVals = new float[6];
+        String[] categoryValues = {"Vegetable", "Fruit", "Grains", "Protein", "Dairy", "Liquid"};
+        for(int i = 0; i < consumedVals.length; i++) {
+
+            Uri consumedUri = FoodContract.ConsumedEntry.CONTENT_URI.
+                    buildUpon().appendPath(Long.toString(beg)).
+                    appendPath(Long.toString(today)).
+                    appendPath(categoryValues[i]).build();
+            String[] projection = {FoodContract.ConsumedEntry.COLUMN_QUANTITY}; // cols we want to extract
+            Cursor cursor = getContentResolver().query(consumedUri, projection, null, null, null);
+
+        }
+        // return consumedVals;
+        if (selection.equals("Day"))
+            return new float[]{4.3f, 2.8f, 4f, 1f, 3.6f, 8f};
+        if (selection.equals("Week"))
+            return new float[]{25f, 18f, 25f, 9f, 27f, 54f};
+        else
+            return new float[]{122f, 64f, 116f, 32f, 99f, 202f};
+
     }
 
     private ArrayList<BarDataSet> getDataSet() {
