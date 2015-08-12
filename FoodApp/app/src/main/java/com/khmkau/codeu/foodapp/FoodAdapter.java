@@ -60,10 +60,6 @@ public class FoodAdapter extends CursorAdapter {
         // For accessibility, add a food name to the icon field
         viewHolder.iconView.setContentDescription(foodName);
 
-        // TODO: delete... from sunshine where sharedPrefs are used here for units
-//        // Read user preference for metric or imperial temperature units
-//        boolean isMetric = Utility.isMetric(context);
-
         // Read expiration date from cursor
         long expiration = cursor.getLong(FoodFragment.COL_EXPIRATION_DATE);
           //  TODO: extra functionality: format date so that it displays, "today", "tomorrow", or the date... or # days left til exp
