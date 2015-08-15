@@ -98,89 +98,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ContentValues infoValues = new ContentValues();
-        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large");
-        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
-
-        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
-
-        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-        long infoRowId = ContentUris.parseId(insertedUri);
-
-        ContentValues currentValues = new ContentValues();
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
-        currentValues.put(FoodContract.CurrentEntry.COLUMN_VALUE, 49);
-
-        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
-//
-////////////////////////
-//
-//        ContentValues infoValues2 = new ContentValues();
-//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Pork");
-//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Protein");
-//        infoValues2.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "lbs");
-//        infoValues2.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
-//
-//        Uri insertedUri2 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues2);
-//
-//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-//        long infoRowId2 = ContentUris.parseId(insertedUri2);
-//
-//        ContentValues currentValues2 = new ContentValues();
-//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId2);
-//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 11);
-//
-//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
-//
-////////////////////////
-//        ContentValues infoValues3 = new ContentValues();
-//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Water");
-//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Liquid");
-//        infoValues3.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "Cups");
-//        infoValues3.put(FoodContract.InfoEntry.COLUMN_CALORIES, 1);
-//
-//        Uri insertedUri3 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues3);
-//
-//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-//        long infoRowId3 = ContentUris.parseId(insertedUri3);
-//
-//        ContentValues currentValues3 = new ContentValues();
-//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId3);
-//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 5);
-//
-//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues3);
-//
-////////////////////////
-//        ContentValues infoValues4 = new ContentValues();
-//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Cheese");
-//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Dairy");
-//        infoValues4.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "wedges");
-//        infoValues4.put(FoodContract.InfoEntry.COLUMN_CALORIES, 22);
-//
-//        Uri insertedUri4 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues4);
-//
-//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-//        long infoRowId4 = ContentUris.parseId(insertedUri4);
-//
-//        ContentValues currentValues4 = new ContentValues();
-//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId4);
-//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 7);
-//
-//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues4);
-//
-////////////////////////
-        // TODO layout uses fridge or main? This is what sunny uses:
         // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         rootView = inflater.inflate(R.layout.fragment_fridge, container, false);
 
@@ -251,6 +168,7 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
                 // CursorAdapter returns a cursor at the correct position for getItem(), or null
                 // if it cannot seek to that position.
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+                int foodID = cursor.getInt(cursor.getColumnIndex(FoodContract.CurrentEntry._ID));
                 if (cursor != null) {
                     ((Callback) getActivity())
                             .onItemSelected(FoodContract.CurrentEntry.CONTENT_URI);
@@ -270,32 +188,6 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
             // swapout in onLoadFinished.
             mPosition = savedInstanceState.getInt(SELECTED_KEY);
         }
-
-
-//        // TODO: extra functionality to list details of each item
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//
-//                // TODO figure this out for cursors
-//                // CursorAdapter returns a cursor at the correct position for getItem(), or null
-//                // if it cannot seek to that position.
-//                Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-//                if (cursor != null) {
-//                    Intent intent = new Intent(getActivity(), NutritionalDetailActivity.class)
-//                            .setData(FoodContract.CurrentEntry.buildCurrentUri(cursor.getLong(COL_FOOD_ID)
-//                            ));
-//                    startActivity(intent);
-//                }
-//
-//            }
-//        });
-
-//                // TODO delete this old code!
-//                // launchs an explicit intent to switch to the nutritional detail activity
-////                Intent intent = new Intent(getActivity(), NutritionalDetailActivity.class)
-////                        .putExtra(Intent.EXTRA_TEXT, "TEST"); // passes in the food detail info to the detail activity
-////                startActivity(intent);
 
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -325,20 +217,107 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        // used to populate an initial list of food; DEMO PURPOSES ONLY
+        insertMockData();
+
         getLoaderManager().initLoader(FOOD_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
+    private void insertMockData() {
+        for (int i = 0; i < 3; i++) {
+            ContentValues infoValues = new ContentValues();
+            infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
+            infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
+            infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large");
+            infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        // When tablets rotate, the currently selected list item needs to be saved.
-        // When no item is selected, mPosition will be set to Listview.INVALID_POSITION,
-        // so check for that before storing.
-        if (mPosition != ListView.INVALID_POSITION) {
-            outState.putInt(SELECTED_KEY, mPosition);
+            Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
+
+            // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+            long infoRowId = ContentUris.parseId(insertedUri);
+
+            ContentValues currentValues = new ContentValues();
+            currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
+            currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+            currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+            currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
+            currentValues.put(FoodContract.CurrentEntry.COLUMN_VALUE, 49);
+
+            getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
         }
-        super.onSaveInstanceState(outState);
+        //////////////////////
+//
+//        ContentValues infoValues2 = new ContentValues();
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Pork");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Protein");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "lbs");
+//        infoValues2.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+//
+//        Uri insertedUri2 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues2);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId2 = ContentUris.parseId(insertedUri2);
+//
+//        ContentValues currentValues2 = new ContentValues();
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId2);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 2222033600L);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 2345033600L);
+//        currentValues2.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 11);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues2);
+//
+//        //////////////////////
+//
+//        ContentValues infoValues3 = new ContentValues();
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Water");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Liquid");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "Cups");
+//        infoValues3.put(FoodContract.InfoEntry.COLUMN_CALORIES, 1);
+//
+//        Uri insertedUri3 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues3);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId3 = ContentUris.parseId(insertedUri3);
+//
+//        ContentValues currentValues3 = new ContentValues();
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId3);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1550033600L);
+//        currentValues3.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 5);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues3);
+//
+//        //////////////////////
+//        ContentValues infoValues4 = new ContentValues();
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Cheese");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Dairy");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "wedges");
+//        infoValues4.put(FoodContract.InfoEntry.COLUMN_CALORIES, 22);
+//
+//        Uri insertedUri4 = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues4);
+//
+//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+//        long infoRowId4 = ContentUris.parseId(insertedUri4);
+//
+//        ContentValues currentValues4 = new ContentValues();
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId4);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1111033600L);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 2334033600L);
+//        currentValues4.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 7);
+//
+//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues4);
+//    }
+//
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        // When tablets rotate, the currently selected list item needs to be saved.
+//        // When no item is selected, mPosition will be set to Listview.INVALID_POSITION,
+//        // so check for that before storing.
+//        if (mPosition != ListView.INVALID_POSITION) {
+//            outState.putInt(SELECTED_KEY, mPosition);
+//        }
+//        super.onSaveInstanceState(outState);
     }
 
     @Override
