@@ -40,10 +40,6 @@ public class FoodAdapter extends CursorAdapter {
 
         ViewHolder viewHolder = (ViewHolder) view.getTag();
 
-        // TODO delete... this is used for sunshine
-//        viewHolder.iconView.setImageResource(Utility.getArtResourceForWeatherCondition(
-//                cursor.getInt(ForecastFragment.COL_WEATHER_CONDITION_ID)));
-
         viewHolder.iconView.setImageResource(Utility.getImgResourceForFoodGroup(
                 cursor.getString(FoodFragment.COL_FOOD_GROUP)));
 

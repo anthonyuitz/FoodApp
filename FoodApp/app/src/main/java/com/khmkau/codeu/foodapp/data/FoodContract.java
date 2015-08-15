@@ -213,7 +213,6 @@ public class FoodContract {
         public static final String TABLE_NAME = "food_info";
 
         // Column with the foreign key into the location table.
-        // TODO: food key?
         public static final String COLUMN_FOOD_NAME = "food_name";
         public static final String COLUMN_FOOD_GROUP = "food_group";
         public static final String COLUMN_SERVING_UNIT = "serving_unit";
@@ -226,7 +225,6 @@ public class FoodContract {
         public static final String COLUMN_TOTAL_CARBOHYDRATE = "total_carbohydrate";
         public static final String COLUMN_SUGAR = "sugar";
         public static final String COLUMN_PROTEIN = "protein";
-
 
         public static Uri buildInfoUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);

@@ -23,8 +23,6 @@ public class EatDialogFragment extends DialogFragment {
     public View rootView;
     public int foodID;
 
-    static final int COL_QTY = 0;
-
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,91 +44,95 @@ public class EatDialogFragment extends DialogFragment {
                         // eatQty >= currentQty: delete the entire DB row
                         // eatQty < currentQty: update the DB row
                         EditText input = (EditText) rootView.findViewById(R.id.eat_request);
-                        int eatQty = Integer.parseInt(input.getText().toString());
+                        String quantity = input.getText().toString();
 
-                        Uri currentUri = FoodContract.CurrentEntry.CONTENT_URI;
-                        String[] projection = {FoodContract.CurrentEntry.TABLE_NAME + "." + FoodContract.CurrentEntry._ID, FoodContract.CurrentEntry.COLUMN_QUANTITY};
-                        String selection = FoodContract.CurrentEntry.TABLE_NAME + "." + FoodContract.CurrentEntry._ID + " = ?";
-                        String[] selectionArgs = {Integer.toString(foodID)};
+                        if (!quantity.equals("")) {
+                            int eatQty = Integer.parseInt(quantity);
 
-                        Cursor cursor = getActivity().getContentResolver().query(
-                                currentUri, // uri
-                                projection, // projection
-                                selection, // selection
-                                selectionArgs, // selection args
-                                null); // sortOrder
-                        // int currentQty = currentCursor.getInt(cursor.getColumnIndex(FoodContract.CurrentEntry.COLUMN_QUANTITY));
-                        int currentQty = 0;
-                        if (cursor.moveToFirst()) {
-                            do {
-                                int i = cursor.getInt(0);
-                                if (i == foodID) {
-                                    currentQty = cursor.getInt(1);
-                                    break;
+                            Uri currentUri = FoodContract.CurrentEntry.CONTENT_URI;
+                            String[] projection = {FoodContract.CurrentEntry.TABLE_NAME + "." + FoodContract.CurrentEntry._ID, FoodContract.CurrentEntry.COLUMN_QUANTITY};
+                            String selection = FoodContract.CurrentEntry.TABLE_NAME + "." + FoodContract.CurrentEntry._ID + " = ?";
+                            String[] selectionArgs = {Integer.toString(foodID)};
+
+                            Cursor cursor = getActivity().getContentResolver().query(
+                                    currentUri, // uri
+                                    projection, // projection
+                                    selection, // selection
+                                    selectionArgs, // selection args
+                                    null); // sortOrder
+                            // int currentQty = currentCursor.getInt(cursor.getColumnIndex(FoodContract.CurrentEntry.COLUMN_QUANTITY));
+                            int currentQty = 0;
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    int i = cursor.getInt(0);
+                                    if (i == foodID) {
+                                        currentQty = cursor.getInt(1);
+                                        break;
+                                    }
+                                } while (cursor.moveToNext());
+                            }
+
+                            Uri consumedUri = FoodContract.ConsumedEntry.CONTENT_URI;
+
+                            String consumedSelection = FoodContract.ConsumedEntry.TABLE_NAME + "." + FoodContract.ConsumedEntry._ID + " = ?";
+                            String[] consumedArgs = {Integer.toString(foodID)};
+
+                            Cursor consumedCursor = getActivity().getContentResolver().query(
+                                    currentUri, // uri
+                                    null, // projection
+                                    selection, // selection
+                                    selectionArgs, // selection args
+                                    null); // sortOrder
+
+                            if (eatQty >= currentQty) {
+                                // step 1: update CONSUMED table to include info from entire deleted row
+                                ContentValues consumedInfo = new ContentValues();
+                                DatabaseUtils.cursorRowToContentValues(cursor, consumedInfo);
+                                consumedInfo.put(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED, FoodContract.normalizeDate((new Date()).getTime()));
+
+                                if (consumedCursor != null) {    // if already exists: update
+                                    getActivity().getContentResolver().update(
+                                            FoodContract.ConsumedEntry.CONTENT_URI,
+                                            consumedInfo,
+                                            consumedSelection,
+                                            consumedArgs);
+                                } else { // does not exist in consumed table
+                                    getActivity().getContentResolver().insert(consumedUri, consumedInfo);
                                 }
-                            } while (cursor.moveToNext());
-                        }
 
-                        Uri consumedUri = FoodContract.ConsumedEntry.CONTENT_URI;
+                                // step 2: delete entire row in CURRENT table
+                                getActivity().getContentResolver().delete(currentUri, selection, selectionArgs);
+                                Toast.makeText(getActivity(), "Fridge updated", Toast.LENGTH_SHORT).show();
+                            } else if (eatQty < currentQty && eatQty > 0) {
+                                // step 1: change updateQty so that it reflects amount
+                                currentQty -= eatQty;
 
-                        String consumedSelection = FoodContract.ConsumedEntry.TABLE_NAME + "." + FoodContract.ConsumedEntry._ID + " = ?";
-                        String[] consumedArgs = {Integer.toString(foodID)};
+                                // step 2: update CURRENT table
+                                ContentValues updatedInfo = new ContentValues();
+                                updatedInfo.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, currentQty);
+                                getActivity().getContentResolver().update(FoodContract.CurrentEntry.CONTENT_URI, updatedInfo, selection, selectionArgs);
 
-                        Cursor consumedCursor = getActivity().getContentResolver().query(
-                                currentUri, // uri
-                                null, // projection
-                                selection, // selection
-                                selectionArgs, // selection args
-                                null); // sortOrder
+                                // step 3: update the eaten database
+                                ContentValues consumedInfo = new ContentValues();
+                                DatabaseUtils.cursorRowToContentValues(cursor, consumedInfo);
+                                consumedInfo.put(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED, FoodContract.normalizeDate((new Date()).getTime()));
 
-                        if (eatQty >= currentQty) {
-                            // step 1: update CONSUMED table to include info from entire deleted row
-                            ContentValues consumedInfo = new ContentValues();
-                            DatabaseUtils.cursorRowToContentValues(cursor, consumedInfo);
-                            consumedInfo.put(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED, FoodContract.normalizeDate((new Date()).getTime()));
+                                if (consumedCursor != null) {    // if already exists: update
+                                    getActivity().getContentResolver().update(
+                                            FoodContract.ConsumedEntry.CONTENT_URI,
+                                            consumedInfo,
+                                            consumedSelection,
+                                            consumedArgs);
+                                } else { // does not exist in consumed table
+                                    getActivity().getContentResolver().insert(consumedUri, consumedInfo);
+                                }
 
-                            if (consumedCursor != null) {    // if already exists: update
-                                getActivity().getContentResolver().update(
-                                        FoodContract.ConsumedEntry.CONTENT_URI,
-                                        consumedInfo,
-                                        consumedSelection,
-                                        consumedArgs);
-                            } else { // does not exist in consumed table
-                                getActivity().getContentResolver().insert(consumedUri, consumedInfo);
+                                // step 4: wrap up branch with "updated" toast
+                                Toast.makeText(getActivity(), "Fridge Updated", Toast.LENGTH_SHORT).show();
                             }
 
-                            // step 2: delete entire row in CURRENT table
-                            getActivity().getContentResolver().delete(currentUri, selection, selectionArgs);
-                            Toast.makeText(getActivity(), "Fridge updated", Toast.LENGTH_SHORT).show();
-                        } else if (eatQty < currentQty && eatQty > 0) {
-                            // step 1: change updateQty so that it reflects amount
-                            currentQty -= eatQty;
-
-                            // step 2: update CURRENT table
-                            ContentValues updatedInfo = new ContentValues();
-                            updatedInfo.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, currentQty);
-                            getActivity().getContentResolver().update(FoodContract.CurrentEntry.CONTENT_URI, updatedInfo, selection, selectionArgs);
-
-                            // step 3: update the eaten database
-                            ContentValues consumedInfo = new ContentValues();
-                            DatabaseUtils.cursorRowToContentValues(cursor, consumedInfo);
-                            consumedInfo.put(FoodContract.ConsumedEntry.COLUMN_DATE_CONSUMED, FoodContract.normalizeDate((new Date()).getTime()));
-
-                            if (consumedCursor != null) {    // if already exists: update
-                                getActivity().getContentResolver().update(
-                                        FoodContract.ConsumedEntry.CONTENT_URI,
-                                        consumedInfo,
-                                        consumedSelection,
-                                        consumedArgs);
-                            } else { // does not exist in consumed table
-                                getActivity().getContentResolver().insert(consumedUri, consumedInfo);
-                            }
-
-                            // step 4: wrap up branch with "updated" toast
-                            Toast.makeText(getActivity(), "Fridge Updated", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getActivity(), "Fridge Updated", Toast.LENGTH_SHORT).show();
                         }
-
-                        // Toast.makeText(getActivity(), "Fridge Updated", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton(R.string.cancel_label, new DialogInterface.OnClickListener() {

@@ -4,6 +4,8 @@ package com.khmkau.codeu.foodapp;
  * Created by Melissa on 7/26/2015.
  */
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,9 +18,12 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -31,12 +36,17 @@ import com.khmkau.codeu.foodapp.data.FoodContract;
  * A fragment containing a simple view of the Food items.
  */
 public class FoodFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-//    public class FoodFragment extends Fragment {
-//    private ArrayAdapter<String> foodAdapter; // HARD CODED ARRAY EXAMPLE
+
+
+    public static final String LOG_TAG = FoodFragment.class.getSimpleName();
     private FoodAdapter foodAdapter;
+
     private SwipeMenuListView listView;
     private static final int FOOD_LOADER = 0;
     private View rootView;
+    private int mPosition = ListView.INVALID_POSITION;
+
+    private static final String SELECTED_KEY = "selected_position";
 
     // We're showing only a small subset of the stored data.
     // Specify the columns we need.
@@ -73,27 +83,40 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Add this line in order for this fragment to handle menu events.
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        ContentValues infoValues = new ContentValues();
-//        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
-//        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
-//        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large fruit");
-//        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
-//
-//        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
-//
-//        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-//        long infoRowId = ContentUris.parseId(insertedUri);
-//
-//        ContentValues currentValues = new ContentValues();
-//        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
-//        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
-//        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
-//        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
-//
-//        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
+        ContentValues infoValues = new ContentValues();
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_NAME, "Apple");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_FOOD_GROUP, "Fruit");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_SERVING_UNIT, "large");
+        infoValues.put(FoodContract.InfoEntry.COLUMN_CALORIES, 5);
+
+        Uri insertedUri = getActivity().getContentResolver().insert(FoodContract.InfoEntry.CONTENT_URI, infoValues);
+
+        // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
+        long infoRowId = ContentUris.parseId(insertedUri);
+
+        ContentValues currentValues = new ContentValues();
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_FOOD_KEY, infoRowId);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_DATE_PURCHASED, 1419033600L);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_EXPIRATION_DATE, 1419033600L);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_QUANTITY, 3);
+        currentValues.put(FoodContract.CurrentEntry.COLUMN_VALUE, 49);
+
+        getActivity().getContentResolver().insert(FoodContract.CurrentEntry.CONTENT_URI, currentValues);
 //
 ////////////////////////
 //
@@ -199,18 +222,20 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 Cursor cursor = (Cursor) listView.getItemAtPosition(position);
                 int foodID = cursor.getInt(cursor.getColumnIndex(FoodContract.CurrentEntry._ID));
+                Bundle bundle = new Bundle();
+                bundle.putInt("foodIDKey", foodID);
 
                 switch (index) {
                     case 0: // eat
                         DialogFragment eatFragment = new EatDialogFragment();
                         eatFragment.show(getFragmentManager(), "t");
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("foodIDKey", foodID);
                         eatFragment.setArguments(bundle);
                         break;
                     case 1: // trash food
                         DialogFragment trashFragment = new TrashDialogFragment();
                         trashFragment.show(getFragmentManager(), "trash");
+                        trashFragment.setArguments(bundle);
+
 //                        foodAdapter.remove(item);
 //                        foodAdapter.notifyDataSetChanged();
                         break;
@@ -218,8 +243,36 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
                 return false;
             }
         });
+        // We'll call our FridgeActivity
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        // TODO: extra functionality to list details of each item
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // CursorAdapter returns a cursor at the correct position for getItem(), or null
+                // if it cannot seek to that position.
+                Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+                if (cursor != null) {
+                    ((Callback) getActivity())
+                            .onItemSelected(FoodContract.CurrentEntry.CONTENT_URI);
+                }
+                mPosition = position;
+
+            }
+        });
+
+        // If there's instance state, mine it for useful information.
+        // The end-goal here is that the user never knows that turning their device sideways
+        // does crazy lifecycle related things.  It should feel like some stuff stretched out,
+        // or magically appeared to take advantage of room, but data or place in the app was never
+        // actually *lost*.
+        if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY)) {
+            // The listview probably hasn't even been populated yet.  Actually perform the
+            // swapout in onLoadFinished.
+            mPosition = savedInstanceState.getInt(SELECTED_KEY);
+        }
+
+
+//        // TODO: extra functionality to list details of each item
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -235,13 +288,14 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
 //                    startActivity(intent);
 //                }
 //
+//            }
+//        });
+
 //                // TODO delete this old code!
 //                // launchs an explicit intent to switch to the nutritional detail activity
 ////                Intent intent = new Intent(getActivity(), NutritionalDetailActivity.class)
 ////                        .putExtra(Intent.EXTRA_TEXT, "TEST"); // passes in the food detail info to the detail activity
 ////                startActivity(intent);
-//            }
-//        });
 
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -275,6 +329,18 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
         super.onActivityCreated(savedInstanceState);
     }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        // When tablets rotate, the currently selected list item needs to be saved.
+        // When no item is selected, mPosition will be set to Listview.INVALID_POSITION,
+        // so check for that before storing.
+        if (mPosition != ListView.INVALID_POSITION) {
+            outState.putInt(SELECTED_KEY, mPosition);
+        }
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // String sortOrder = FoodContract.InfoEntry.COLUMN_FOOD_NAME + " ASC"; // initially sort by
@@ -295,11 +361,11 @@ public class FoodFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         foodAdapter.swapCursor(cursor);
-//        if (mPosition != ListView.INVALID_POSITION) {
-//            // If we don't need to restart the loader, and there's a desired position to restore
-//            // to, do so now.
-//            mListView.smoothScrollToPosition(mPosition);
-//        }
+        if (mPosition != ListView.INVALID_POSITION) {
+            // If we don't need to restart the loader, and there's a desired position to restore
+            // to, do so now.
+            listView.smoothScrollToPosition(mPosition);
+        }
     }
 
     @Override

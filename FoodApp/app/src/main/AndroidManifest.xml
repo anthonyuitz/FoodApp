@@ -109,7 +109,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khmkau.codeu.foodapp.InputMenuActivity" />
         </activity>
-
+        <activity
+            android:name=".NutritionalDetailActivity"
+            android:label="Nutritional Detail"
+            android:parentActivityName=".FridgeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khmkau.codeu.foodapp.FridgeActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,4 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".FridgeActivity" tools:ignore="MergeRootFrame" />
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"-->
+    <!--android:layout_width="match_parent" android:layout_height="match_parent"-->
+    <!--tools:context=".FridgeActivity" tools:ignore="MergeRootFrame" />-->
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_nutritional"
+    android:name="com.khmkau.codeu.foodapp.FoodFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.khmkau.codeu.foodapp.FoodFragment"
+    tools:layout="@android:layout/list_content" />

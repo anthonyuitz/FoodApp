@@ -1,22 +1,44 @@
 package com.khmkau.codeu.foodapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class FridgeActivity extends ActionBarActivity {
+public class FridgeActivity extends ActionBarActivity implements FoodFragment.Callback {
+
+    private final String LOG_TAG = FridgeActivity.class.getSimpleName();
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.container, new FoodFragment())
+//                    .commit();
+//        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fridge);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new FoodFragment())
-                    .commit();
+        if (findViewById(R.id.nutritional_detail_container) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nutritional_detail_container, new NutritionalDetailFragment(), DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        } else {
+            mTwoPane = false;
+            getSupportActionBar().setElevation(0f);
         }
     }
 
@@ -38,6 +60,28 @@ public class FridgeActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(Uri contentUri) {
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle args = new Bundle();
+            args.putParcelable(NutritionalDetailFragment.DETAIL_URI, contentUri);
+
+            NutritionalDetailFragment fragment = new NutritionalDetailFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.nutritional_detail_container, fragment, DETAILFRAGMENT_TAG)
+                    .commit();
+        } else {
+            Intent intent = new Intent(this, NutritionalDetailActivity.class)
+                    .setData(contentUri);
+            startActivity(intent);
+        }
     }
 
 }
