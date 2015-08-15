@@ -20,8 +20,8 @@
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingRight="24dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="16dp"
     android:paddingTop="17dp"
     android:paddingBottom="17dp" >
 

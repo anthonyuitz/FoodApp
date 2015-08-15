@@ -4,96 +4,103 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="left"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
-        <!-- Main content: high, low, art, weather state -->
         <LinearLayout
-            android:gravity="center_horizontal"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
+            <!-- food name, servings -->
             <LinearLayout
-                android:gravity="left"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
                 <TextView
-                    android:fontFamily="sans-serif-light"
                     android:id="@+id/detail_food_name_textview"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
                     android:textSize="60sp" />
 
                 <TextView
                     android:id="@+id/detail_servings_size_textview"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textColor="#7e7e7e"
-                    android:textSize="36sp" />
+                    android:textSize="32sp"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="0.5">
 
                 <ImageView
                     android:id="@+id/detail_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                 />
 
                 <TextView
                     android:id="@+id/detail_food_group_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#7e7e7e"
                     android:textSize="30sp"
-                    android:textColor="#7e7e7e" />
+                    android:layout_gravity="right" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Humidity, wind, pressure -->
+        <!-- Purchase date, expiration date, calories, cost -->
         <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:padding="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/detail_purchase_date_textview"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/detail_exp_date_textview"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/detail_cost_textview"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/detail_calories_textview"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/detail_cost_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:textAppearanceMedium" />
         </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>
