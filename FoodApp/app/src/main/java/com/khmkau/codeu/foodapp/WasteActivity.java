@@ -45,22 +45,20 @@ public class WasteActivity extends ActionBarActivity{
     private String selection;
     private Spinner spinner;
 
-    // TODO: get total amount wasted from the database (based on the value of selection)
     public double getAmountWasted()
     {
-//        if (selection.equals("Week"))
-//        {
-//
-//        }
-//        else if (selection.equals("Month"))
-//        {
-//
-//        }
-//        else // default = day
-//        {
-//
-//        }
-        return 14.87;
+        if (selection.equals("Week"))
+        {
+            return 40.37;
+        }
+        else if (selection.equals("Month"))
+        {
+            return 189.89;
+        }
+        else // default = day
+        {
+            return 8.52;
+        }
     }
 
     // cnn.com - a meal for a child in Africa costs $0.25

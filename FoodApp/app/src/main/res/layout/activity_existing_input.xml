@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="30dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.khmkau.codeu.foodapp.ExistingInputActivity">
 
@@ -15,11 +15,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/existing_prompt"/>
+            android:text="@string/existing_prompt"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="30dp">
         <AutoCompleteTextView
             android:id="@+id/searchInput"
             android:layout_width="match_parent"
@@ -32,10 +34,173 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:src="@drawable/eat"
-            android:background="#ff55b1ff"
+            android:src="@drawable/magnifying_glass"
             android:onClick="search" />
        </LinearLayout>
+        <TableLayout
+            android:id="@+id/mainTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip"
+            android:shrinkColumns="1"
+            android:stretchColumns="1"
+            android:visibility="gone">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_to_label" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/tableSpinner"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+            </Spinner>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center_vertical"
+                android:text="@string/quantity_label" >
+            </TextView>
+
+            <LinearLayout
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:inputType="number">
+                </EditText>
+
+                <Spinner
+                    android:id="@+id/quantitySpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="0">
+
+                </Spinner>
+            </LinearLayout>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/purchased_by_label" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editPurchasedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="start"
+                android:singleLine="true"
+                android:focusable="false">
+            </EditText>
+
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/expires_by_label" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editExpiresBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:singleLine="true"
+                android:focusable="false">
+            </EditText>
+        </TableRow>
+        <TableRow
+            android:id="@+id/rowConsumed"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/consumed_by_label" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editConsumedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:singleLine="true"
+                android:focusable="false">
+            </EditText>
+        </TableRow>
+        <TableRow
+            android:id="@+id/rowThrown"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/thrown_by_label" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editThrownBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:singleLine="true"
+                android:focusable="false">
+            </EditText>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/total_cost_label" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTotalCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:singleLine="true"
+                android:inputType="numberDecimal">
+            </EditText>
+        </TableRow>
+        </TableLayout>
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:onClick="insertFromExisting"/>
     </LinearLayout>
 
 
